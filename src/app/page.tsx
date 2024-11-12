@@ -1,7 +1,7 @@
 export default function Home() {
 	return (
-		<main>
-			<h1>Hello world!</h1>
-		</main>
+		// <main>
+		<section className="bg-slate-600 h-full">Carousel</section>
+		// </main>
 	);
 }
