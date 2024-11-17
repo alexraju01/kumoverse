@@ -25,14 +25,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="text-base">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary  text-textPrimary`}
 			>
-				<header className="bg-navbarBackground">
+				<header className="bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]">
 					<Navbar />
 				</header>
-				<main>{children}</main>
+				<main className="pt-[60px]">{children}</main>
 			</body>
 		</html>
 	);
