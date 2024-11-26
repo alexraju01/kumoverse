@@ -1,8 +1,9 @@
 import fetchData from "@/lib/fetchData";
 import { Anime, UpcomingAnime } from "@/types/anime";
+import { ClassName } from "@/types/props";
 import Image from "next/image";
 
-export default async function UpComingAnime() {
+export default async function UpComingAnime({ className }: ClassName) {
 	// Use the type for fetchData
 	const upcoming: UpcomingAnime = await fetchData(
 		"v4",
@@ -16,7 +17,7 @@ export default async function UpComingAnime() {
 	);
 
 	return (
-		<section className="w-full p-6 bg-gray-900">
+		<section className={`w-full  bg-primary-900 ${className || ""}`}>
 			<h1 className="text-2xl font-bold text-white mb-6">Upcoming</h1>
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
 				{uniqueAnime.map((anime: Anime) => {

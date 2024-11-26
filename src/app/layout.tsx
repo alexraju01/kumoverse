@@ -32,7 +32,7 @@ export default function RootLayout({
 				<header className="bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]">
 					<Navbar />
 				</header>
-				<main className="pt-[60px]  w-full xl:w-[1800px] mx-auto xl:pt-[75px]">
+				<main className="container mx-auto pt-[60px] xl:pt-[75px] px-4">
 					{children}
 				</main>
 			</body>
