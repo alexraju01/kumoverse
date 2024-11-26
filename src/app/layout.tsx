@@ -27,12 +27,14 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="text-base">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary  text-textPrimary`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary   text-textPrimary`}
 			>
 				<header className="bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]">
 					<Navbar />
 				</header>
-				<main className="pt-[60px] xl:pt-[75px]">{children}</main>
+				<main className="pt-[60px]  w-full xl:w-[1800px] mx-auto xl:pt-[75px]">
+					{children}
+				</main>
 			</body>
 		</html>
 	);
