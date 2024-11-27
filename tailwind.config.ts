@@ -27,6 +27,7 @@ export default {
 				// You can add more colors based on the UI elements observed
 				borderGray: "#303030", // Example: Borders or outlines
 				navbarBackground: "#1C1C1C",
+				customDark: "#242424",
 			},
 
 			container: {

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.aside-card {
+	@apply bg-customDark h-12 rounded overflow-hidden transition-all duration-200 flex items-center;
+}
