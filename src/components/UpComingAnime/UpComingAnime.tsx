@@ -18,7 +18,34 @@ export default async function UpComingAnime({ className }: ClassName) {
 
 	return (
 		<section className={`w-full  bg-primary-900 ${className || ""}`}>
-			<h1 className="text-2xl font-bold text-white mb-6">Upcoming</h1>
+			<div className="flex flex-col md:flex-row justify-between mb-4">
+				<h1 className="text-2xl font-semibold text-gray-300 whitespace-nowrap">
+					Upcoming
+				</h1>
+				<div className="flex items-center text-lg space-x-4">
+					<nav className="space-x-3">
+						{["All", "Sub", "Dub", "Chinese", "Trending", "Random"].map(
+							(item) => (
+								<button
+									key={item}
+									className="text-gray-400 hover:text-gray-300"
+								>
+									{item}
+								</button>
+							)
+						)}
+					</nav>
+					<div className="flex space-x-2">
+						<span title="Icon 1">
+							<i className="icon-class-1"></i>
+						</span>
+						<span title="Icon 2">
+							<i className="icon-class-2"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
 				{uniqueAnime.map((anime: Anime) => {
 					// Format the release date

@@ -8,6 +8,10 @@ export default {
 	],
 	theme: {
 		extend: {
+			// fontFamily: {
+			// 	sans: ["var(--font-nunito)", "sans-serif"], // Use Nunito as the default sans-serif
+			// },
+
 			fontSize: {
 				base: "13.5px",
 			},
