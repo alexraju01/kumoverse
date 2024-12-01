@@ -31,14 +31,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className="text-base">
+		<html lang='en' className='text-base'>
 			<body
-				className={`${nunito.className}  antialiased bg-primary   text-textPrimary`}
-			>
-				<header className="bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]">
+				className={`${nunito.className}  antialiased bg-primary   text-textPrimary`}>
+				<header className='bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]'>
 					<Navbar />
 				</header>
-				<main className="container mx-auto pt-[60px] xl:pt-[75px] px-4">
+				<main className='container mx-auto pt-[60px] xl:pt-[75px] px-4'>
 					{children}
 				</main>
 			</body>
