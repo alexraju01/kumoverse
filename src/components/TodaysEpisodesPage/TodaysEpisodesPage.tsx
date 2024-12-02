@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const ANILIST_API_URL = "https://graphql.anilist.co";
 
 // Define types for AniList API response
@@ -69,33 +71,36 @@ export default async function TodaysEpisodesPage() {
 	const episodes = await fetchEpisodes();
 
 	return (
-		<div className='max-w-4xl mx-auto p-6'>
-			<h1 className='text-3xl font-bold text-center mb-6'>
+		<div className='max-w-6xl'>
+			<h1 className='text-3xl font-bold text-center mb-6 text-white'>
 				Trending Anime Episodes
 			</h1>
-			<ul className='list-none p-0'>
+			<ul className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5'>
 				{episodes.map((anime, index) => (
 					<li
 						key={index}
-						className='flex items-center gap-4 mb-6 border rounded-lg p-4 shadow-lg'>
-						<img
-							src={anime.coverImage.large}
-							alt={anime.title.romaji || anime.title.english || "Anime Cover"}
-							className='w-44 h-auto object-cover rounded-lg'
-						/>
-						<div className='flex flex-col'>
-							<strong className='text-lg font-semibold'>
+						className='relative flex flex-col items-center gap-2 bg-gray-800 rounded-lg shadow-lg transition-all'>
+						<div className='relative w-full aspect-[3/4]'>
+							<Image
+								src={anime.coverImage.large}
+								alt={anime.title.romaji || anime.title.english || "Anime Cover"}
+								className='object-cover w-full h-full'
+								fill
+							/>
+						</div>
+
+						<div className='flex flex-col items-center px-2 text-center'>
+							<span className='bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute top-2 left-2'>
+								{anime.nextAiringEpisode
+									? `Ep ${anime.nextAiringEpisode.episode - 1}`
+									: "CC"}
+							</span>
+							<strong className='text-sm font-semibold text-white w-full text-center line-clamp-2'>
 								{anime.title.romaji || anime.title.english}
 							</strong>
-							<span className='text-gray-600'>
-								{anime.nextAiringEpisode
-									? `Episode ${anime.nextAiringEpisode.episode}`
-									: "No upcoming episode information"}
-							</span>
-							<span className='text-gray-500'>
-								{anime.episodes
-									? `Total Episodes: ${anime.episodes}`
-									: "Total Episodes: Unknown"}
+
+							<span className='text-gray-400 text-xs'>
+								{anime.episodes ? `Total: ${anime.episodes}` : "Unknown"}
 							</span>
 						</div>
 					</li>

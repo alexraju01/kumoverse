@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
 				port: "",
 				pathname: "/images/anime/**", // Add leading slash here
 			},
+			{
+				protocol: "https",
+				hostname: "s4.anilist.co",
+				port: "",
+				pathname: "/file/anilistcdn/media/anime/**",
+			},
 		],
 	},
 };
