@@ -1,3 +1,4 @@
+import { ClassName } from "@/types/props";
 import Image from "next/image";
 
 const ANILIST_API_URL = "https://graphql.anilist.co";
@@ -30,7 +31,7 @@ interface ApiResponse {
 async function fetchEpisodes(): Promise<Anime[]> {
 	const query = `
     query {
-      Page(page: 1, perPage: 10) {
+      Page(page: 1, perPage: 12) {
         media(type: ANIME, status: RELEASING, sort: TRENDING_DESC) {
           title {
             romaji
@@ -67,24 +68,24 @@ async function fetchEpisodes(): Promise<Anime[]> {
 	return data.data.Page.media;
 }
 
-export default async function TodaysEpisodesPage() {
+export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes = await fetchEpisodes();
 
 	return (
-		<div className='max-w-6xl'>
+		<div className={`w-full ${className || ""}`}>
 			<h1 className='text-3xl font-bold text-center mb-6 text-white'>
 				Trending Anime Episodes
 			</h1>
-			<ul className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5'>
+			<ul className=' grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
 				{episodes.map((anime, index) => (
 					<li
 						key={index}
-						className='relative flex flex-col items-center gap-2 bg-gray-800 rounded-lg shadow-lg transition-all'>
+						className='relative flex flex-col items-center gap-2  bg-gray-800 rounded-lg shadow-lg transition-all'>
 						<div className='relative w-full aspect-[3/4]'>
 							<Image
 								src={anime.coverImage.large}
 								alt={anime.title.romaji || anime.title.english || "Anime Cover"}
-								className='object-cover w-full h-full'
+								className='object-cover w-full h-full rounded-t-lg'
 								fill
 							/>
 						</div>
@@ -99,9 +100,9 @@ export default async function TodaysEpisodesPage() {
 								{anime.title.romaji || anime.title.english}
 							</strong>
 
-							<span className='text-gray-400 text-xs'>
+							{/* <span className='text-gray-400 text-xs'>
 								{anime.episodes ? `Total: ${anime.episodes}` : "Unknown"}
-							</span>
+							</span> */}
 						</div>
 					</li>
 				))}
