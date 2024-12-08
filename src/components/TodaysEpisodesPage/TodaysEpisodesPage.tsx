@@ -1,51 +1,7 @@
-import { todaysEpisode } from "@/query/todaysEpisode";
+// import { todaysEpisode } from "@/query/todaysEpisode";
+import fetchEpisodes from "@/lib/fetchData";
 import { ClassName } from "@/types/props";
 import Image from "next/image";
-
-const ANILIST_API_URL = "https://graphql.anilist.co";
-
-// Define types for AniList API response
-interface Anime {
-	title: {
-		romaji?: string;
-		english?: string;
-	};
-	nextAiringEpisode?: {
-		airingAt: number;
-		episode: number;
-	};
-	coverImage: {
-		medium: string; // URL for the cover image
-		large: string;
-	};
-	episodes?: number; // Total number of episodes
-}
-
-interface ApiResponse {
-	data: {
-		Page: {
-			media: Anime[];
-		};
-	};
-}
-
-async function fetchEpisodes(): Promise<Anime[]> {
-	const response = await fetch(ANILIST_API_URL, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ query: todaysEpisode }),
-	});
-
-	if (!response.ok) {
-		throw new Error("Failed to fetch data from AniList API");
-	}
-
-	const data: ApiResponse = await response.json();
-
-	return data.data.Page.media;
-}
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes = await fetchEpisodes();
