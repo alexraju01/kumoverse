@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+	font-size: 12px;
+}
+
 .aside-card {
 	@apply bg-customDark h-12 rounded overflow-hidden transition-all duration-200 flex items-center;
 }
