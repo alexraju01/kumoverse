@@ -1,3 +1,4 @@
+import { todaysEpisode } from "@/query/todaysEpisode";
 import { ClassName } from "@/types/props";
 import Image from "next/image";
 
@@ -29,34 +30,12 @@ interface ApiResponse {
 }
 
 async function fetchEpisodes(): Promise<Anime[]> {
-	const query = `
-    query {
-      Page(page: 1, perPage: 12) {
-        media(type: ANIME, status: RELEASING, sort: TRENDING_DESC) {
-          title {
-            romaji
-            english
-          }
-          nextAiringEpisode {
-            airingAt
-            episode
-          }
-          coverImage {
-            medium
-            large
-          }
-          episodes
-        }
-      }
-    }
-  `;
-
 	const response = await fetch(ANILIST_API_URL, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ query }),
+		body: JSON.stringify({ query: todaysEpisode }),
 	});
 
 	if (!response.ok) {

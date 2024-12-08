@@ -1,7 +1,7 @@
 // import RecentEpisode from "@/components/FetchTodayAnime/FetchTodayAnime";
 // import TodayAnimePage from "@/components/TodayAnimePage/TodayAnimePage";
 import TodaysEpisodesPage from "@/components/TodaysEpisodesPage/TodaysEpisodesPage";
-import UpComingAnime from "@/components/UpComingAnime/UpComingAnime";
+// import UpComingAnime from "@/components/UpComingAnime/UpComingAnime";
 
 export default function Home() {
 	return (
@@ -17,7 +17,7 @@ export default function Home() {
 				</aside>
 			</div>
 			<div>jshdgfjhksdg</div>
-			<UpComingAnime className='flex-grow  w-[1px] px-[10px] bg-[#0E0E0E]' />
+			{/* <UpComingAnime className='flex-grow  w-[1px] px-[10px] bg-[#0E0E0E]' /> */}
 
 			{/* <UpComingAnime data='Recent' /> */}
 		</div>
