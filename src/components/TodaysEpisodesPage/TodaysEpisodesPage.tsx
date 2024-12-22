@@ -14,15 +14,11 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 				</h1>
 				<div className='flex items-center text-lg space-x-4'>
 					<nav className='space-x-3'>
-						{["All", "Sub", "Dub", "Chinese", "Trending", "Random"].map(
-							(item) => (
-								<button
-									key={item}
-									className='text-gray-400 hover:text-gray-300'>
-									{item}
-								</button>
-							)
-						)}
+						{["All", "Sub", "Dub", "Chinese", "Trending", "Random"].map((item) => (
+							<button key={item} className='text-gray-400 hover:text-gray-300'>
+								{item}
+							</button>
+						))}
 					</nav>
 					<div className='flex space-x-2'>
 						<span title='Icon 1'>
@@ -67,20 +63,18 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 								<div className='flex gap-1 items-center'>
 									<div
 										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
-									before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
-									before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
+						before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
+						before:transform before:skew-x-[345deg] before:rounded-[1.5px]  before:bg-[#552A92] before:z-[1]">
 										<span className='relative z-[2] text-[#bbb]'>
-											{anime?.episodes ? `${anime.episodes}` : "Unknown"}
+											{anime.nextAiringEpisode ? `${anime.nextAiringEpisode.episode - 1}` : "CC"}
 										</span>
 									</div>
 									<div
 										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
-						before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
-						before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
+									before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
+									before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
 										<span className='relative z-[2] text-[#bbb]'>
-											{anime.nextAiringEpisode
-												? `${anime.nextAiringEpisode.episode - 1}`
-												: "CC"}
+											{anime?.episodes ? `${anime.episodes}` : "Unknown"}
 										</span>
 									</div>
 								</div>
@@ -90,9 +84,7 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 
 						<div className='flex flex-col items-center px-2 text-center'>
 							<span className='bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute top-2 left-2'>
-								{anime.nextAiringEpisode
-									? `Ep ${anime.nextAiringEpisode.episode - 1}`
-									: "CC"}
+								{anime.nextAiringEpisode ? `Ep ${anime.nextAiringEpisode.episode - 1}` : "CC"}
 							</span>
 
 							{/* <span className='text-gray-400 text-xs'>

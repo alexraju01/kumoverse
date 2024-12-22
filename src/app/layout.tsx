@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-// import localFont from "next/font/local";
-// import { Nunito } from "next/font/google";
-import { Nunito } from "@next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
-// const geistSans = localFont({
-// 	src: "./fonts/GeistVF.woff",
-// 	variable: "--font-geist-sans",
-// 	weight: "100 900",
-// });
-// const geistMono = localFont({
-// 	src: "./fonts/GeistMonoVF.woff",
-// 	variable: "--font-geist-mono",
-// 	weight: "100 900",
-// });
 
 const nunito = Nunito({
 	subsets: ["latin"], // Choose subsets based on your needs
@@ -32,14 +19,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className='text-base'>
-			<body
-				className={`${nunito.className}  antialiased bg-primary   text-textPrimary`}>
+			<body className={`${nunito.className}  antialiased bg-primary   text-textPrimary`}>
 				<header className='bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]'>
 					<Navbar />
 				</header>
-				<main className='container mx-auto pt-[60px] xl:pt-[75px] px-4'>
-					{children}
-				</main>
+				<main className='container mx-auto pt-[60px] xl:pt-[75px] px-4'>{children}</main>
 			</body>
 		</html>
 	);
