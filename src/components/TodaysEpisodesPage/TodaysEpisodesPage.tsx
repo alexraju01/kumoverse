@@ -36,8 +36,8 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 			<ul className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
 				{episodes.map((anime, index) => (
 					<div key={index}>
-						<li className='relative flex flex-col items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
-							<div className='relative w-full aspect-[3/4]'>
+						<li className='relative flex flex-col  items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
+							<div className='relative w-full aspect-[5/7]'>
 								<Image
 									src={anime.coverImage.large}
 									alt={anime.title.romaji || anime.title.english || "Anime Cover"}

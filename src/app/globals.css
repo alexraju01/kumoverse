@@ -7,5 +7,9 @@ html {
 }
 
 .aside-card {
-	@apply bg-customDark h-12 rounded overflow-hidden transition-all duration-200 flex items-center;
+	@apply bg-customDark  rounded overflow-hidden transition-all duration-200 flex items-center;
+}
+
+.rank-background {
+	@apply w-[50px] h-[55px] bg-contain bg-no-repeat bg-center self-center px-[10px] flex-shrink-0 relative;
 }
