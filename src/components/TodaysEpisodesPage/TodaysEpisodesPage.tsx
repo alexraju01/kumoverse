@@ -1,10 +1,11 @@
 // import { todaysEpisode } from "@/query/todaysEpisode";
 import fetchEpisodes from "@/lib/fetchData";
+import { todaysEpisode } from "@/query/todaysEpisode";
 import { ClassName } from "@/types/props";
 import Image from "next/image";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
-	const episodes = await fetchEpisodes();
+	const episodes = await fetchEpisodes(todaysEpisode);
 
 	return (
 		<div className={`w-full ${className || ""}`}>
@@ -30,68 +31,46 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 					</div>
 				</div>
 			</div>
-			<ul className=' grid grid-cols-3 md:grid-cols-4  lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
-				{episodes.map((anime, index) => (
-					<li
-						key={index}
-						className='relative flex flex-col items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
-						<div className='relative w-full aspect-[3/4]'>
-							<Image
-								src={anime.coverImage.large}
-								alt={anime.title.romaji || anime.title.english || "Anime Cover"}
-								className='object-cover w-full h-full '
-								fill
-								quality={100}
-							/>
-						</div>
-						{/* Moved this div inside the li container */}
-						<div className='flex justify-between px-[5px] text-sm font-semibold bg-[#242424] text-[#aaa] absolute bottom-0 left-0 w-full h-8 leading-8 text-center z-10 overflow rounded-b-[5px]'>
-							{/* {anime.nextAiringEpisode && (
-								<div
-									className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
-						before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
-						before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
-									<span className='relative z-[2] text-[#bbb]'>
-										{anime.nextAiringEpisode
-											? `${anime.nextAiringEpisode.episode - 1}`
-											: "CC"}
-									</span>
-								</div>
-							)} */}
 
-							{anime.episodes && (
+			<ul className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
+				{episodes.map((anime, index) => (
+					<div key={index}>
+						<li className='relative flex flex-col items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
+							<div className='relative w-full aspect-[3/4]'>
+								<Image
+									src={anime.coverImage.large}
+									alt={anime.title.romaji || anime.title.english || "Anime Cover"}
+									className='object-cover w-full h-full'
+									fill
+									quality={100}
+								/>
+							</div>
+							<div className='flex justify-between px-[5px] text-sm font-semibold bg-[#242424] text-[#aaa] absolute bottom-0 left-0 w-full h-8 leading-8 text-center z-10 overflow rounded-b-[5px]'>
 								<div className='flex gap-1 items-center'>
 									<div
 										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
-						before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
-						before:transform before:skew-x-[345deg] before:rounded-[1.5px]  before:bg-[#552A92] before:z-[1]">
+										before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
+										before:transform before:skew-x-[345deg] before:rounded-[1.5px]  before:bg-[#552A92] before:z-[1]">
 										<span className='relative z-[2] text-[#bbb]'>
 											{anime.nextAiringEpisode ? `${anime.nextAiringEpisode.episode - 1}` : "CC"}
 										</span>
 									</div>
 									<div
 										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
-									before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
-									before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
+										before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
+										before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
 										<span className='relative z-[2] text-[#bbb]'>
-											{anime?.episodes ? `${anime.episodes}` : "Unknown"}
+											{anime?.episodes ? `${anime.episodes}` : "CC"}
 										</span>
 									</div>
 								</div>
-							)}
-							<div>TV</div>
+								<div>TV</div>
+							</div>
+						</li>
+						<div className=' mt-[12.15px] mb-[10.125px] text-[#aaa] text-[16.2px] font-medium line-clamp-2 leading-[1.5rem] max-h-[3rem] overflow-hidden h-[3.75rem]'>
+							{anime.title.english}
 						</div>
-
-						<div className='flex flex-col items-center px-2 text-center'>
-							<span className='bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute top-2 left-2'>
-								{anime.nextAiringEpisode ? `Ep ${anime.nextAiringEpisode.episode - 1}` : "CC"}
-							</span>
-
-							{/* <span className='text-gray-400 text-xs'>
-								{anime.episodes ? `Total: ${anime.episodes}` : "Unknown"}
-							</span> */}
-						</div>
-					</li>
+					</div>
 				))}
 			</ul>
 		</div>
