@@ -3,6 +3,7 @@ import fetchEpisodes from "@/lib/fetchData";
 import { todaysEpisode } from "@/query/todaysEpisode";
 import { ClassName } from "@/types/props";
 import Image from "next/image";
+import EpisodeNumber from "./EpisodeNumber";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes = await fetchEpisodes(todaysEpisode);
@@ -51,18 +52,21 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
 										before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
 										before:transform before:skew-x-[345deg] before:rounded-[1.5px]  before:bg-[#552A92] before:z-[1]">
-										<span className='relative z-[2] text-[#bbb]'>
-											{anime.nextAiringEpisode ? `${anime.nextAiringEpisode.episode - 1}` : "CC"}
-										</span>
+										{/* <span className='relative z-[2] text-[#bbb]'>
+											{anime.nextAiringEpisode?.episode
+												? `${anime.nextAiringEpisode.episode - 1}`
+												: "CC"}
+										</span> */}
+										<EpisodeNumber anime={anime} />
 									</div>
-									<div
-										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
+									{anime.episodes && (
+										<div
+											className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
 										before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
 										before:transform before:skew-x-[345deg] before:rounded-[1.5px] before:bg-[#666] before:z-[1]">
-										<span className='relative z-[2] text-[#bbb]'>
-											{anime?.episodes ? `${anime.episodes}` : "CC"}
-										</span>
-									</div>
+											<span className='relative z-[2] text-[#bbb]'>{anime.episodes}</span>
+										</div>
+									)}
 								</div>
 								<div>TV</div>
 							</div>
