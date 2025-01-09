@@ -1,8 +1,14 @@
 "use client";
 
+import { Anime } from "@/types/anime";
 import { useState, useEffect } from "react";
 
-export default function EpisodeNumber({ anime }) {
+interface EpisodeNumberProps {
+	anime: Anime;
+}
+
+export default function EpisodeNumber({ anime }: EpisodeNumberProps) {
+	console.log(anime);
 	const [currentEpisode, setCurrentEpisode] = useState(
 		anime.nextAiringEpisode?.episode ? anime.nextAiringEpisode.episode - 1 : null
 	);

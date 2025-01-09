@@ -8,7 +8,7 @@ import rank5 from "../../public/rank/5.png";
 import Image from "next/image";
 
 const rankImages = [rank1, rank2, rank3, rank4, rank5];
-const borderColors = {
+const borderColors: Record<number, string> = {
 	0: "border-[#812bf9]", // First rank
 	1: "border-[#bd4c60]", // Second rank
 	2: "border-[#ab8445]", // Third rank

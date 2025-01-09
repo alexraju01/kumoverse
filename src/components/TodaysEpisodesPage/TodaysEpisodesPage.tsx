@@ -4,9 +4,10 @@ import { todaysEpisode } from "@/query/todaysEpisode";
 import { ClassName } from "@/types/props";
 import Image from "next/image";
 import EpisodeNumber from "./EpisodeNumber";
+import { Anime } from "@/types/anime";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
-	const episodes = await fetchEpisodes(todaysEpisode);
+	const episodes: Anime[] = await fetchEpisodes(todaysEpisode);
 
 	return (
 		<div className={`w-full ${className || ""}`}>
