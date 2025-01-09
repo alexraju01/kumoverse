@@ -14,12 +14,7 @@ export default function Navbar() {
 				</div>
 				<div className='logo  min-w-[91px] min-h-[27px]  max-w-[143.3px] max-h-[43.9px] w-full'>
 					<Link href='/'>
-						<Image
-							src={logo}
-							alt='Logo'
-							layout='responsive' // Enables responsive behavior
-							className='object-contain h-full w-full'
-						/>
+						<Image src={logo} alt='Logo' className='object-contain h-full w-full' />
 					</Link>
 				</div>
 

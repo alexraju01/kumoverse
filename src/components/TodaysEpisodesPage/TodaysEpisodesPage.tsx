@@ -10,7 +10,7 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes: Anime[] = await fetchEpisodes(todaysEpisode);
 
 	return (
-		<div className={`w-full ${className || ""}`}>
+		<div className={`w-full ${className}`}>
 			<div className='flex flex-col md:flex-row justify-between mb-4'>
 				<h1 className='text-2xl font-semibold text-gray-300 witespace-nowrap text-[2rem]'>
 					Recent Updates
@@ -44,6 +44,10 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 									alt={anime.title.romaji || anime.title.english || "Anime Cover"}
 									className='object-cover w-full h-full'
 									fill
+									sizes='(max-width: 768px) 80vw, 
+									(max-width: 1024px) 50vw, 
+									(max-width: 1440px) 33vw, 
+									20vw' // Adjust sizes for different breakpoints
 									quality={100}
 								/>
 							</div>

@@ -34,45 +34,35 @@ export default async function AsideRank() {
 				return (
 					<div key={index} className={`aside-card border-r-2 ${borderColor}`}>
 						<div className='rank-background w-[50px] h-[55px]'>
-							<Image
-								src={rankImages[index]}
-								alt={`Rank ${index + 1}`}
-								fill
-								className='object-contain'
-							/>
+							{rankImages[index] ? (
+								<Image
+									src={rankImages[index]}
+									alt={`Rank ${index + 1}`}
+									fill
+									sizes='(max-width: 768px) 50px, 100px'
+									className='object-contain'
+								/>
+							) : (
+								<div className='w-full h-full bg-gray-300'>No Rank Image</div> // Placeholder for missing rank image
+							)}
 						</div>
+
 						<span className='relative w-[60px] h-[78px]'>
-							<Image
-								src={anime.coverImage.medium}
-								alt={`Rank ${index + 1}`}
-								fill
-								className='object-cover'
-							/>
+							{anime.coverImage?.medium ? (
+								<Image
+									src={anime.coverImage.medium}
+									alt={`Rank ${index + 1}`}
+									fill
+									sizes='(max-width: 768px) 100px, 150px'
+									className='object-cover'
+								/>
+							) : (
+								<div className='w-full h-full bg-gray-200'>No Image</div> // Placeholder for missing image
+							)}
 						</span>
 					</div>
 				);
 			})}
-
-			{/* <div className='aside-card border-r-2 border-[#bd4c60]'>
-				<div className='rank-background'>
-					<Image src={rank2} alt='Rank 1' fill className='object-contain' />
-				</div>
-			</div>{" "}
-			<div className='aside-card border-r-2 border-[#ab8445]'>
-				<div className='rank-background'>
-					<Image src={rank3} alt='Rank 1' fill className='object-contain' />
-				</div>
-			</div>{" "}
-			<div className='aside-card'>
-				<div className='rank-background'>
-					<Image src={rank4} alt='Rank 1' fill className='object-contain' />
-				</div>
-			</div>{" "}
-			<div className='aside-card'>
-				<div className='rank-background'>
-					<Image src={rank5} alt='Rank 1' fill className='object-contain' />
-				</div>
-			</div> */}
 		</aside>
 	);
 }
