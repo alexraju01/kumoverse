@@ -8,7 +8,7 @@ const nunito = Nunito({
 	weight: ["400", "600", "700"], // Choose font weights needed
 });
 export const metadata: Metadata = {
-	title: "Home | AniWave | Watch Free Anime,  Online Anime Streaming - Aniwave",
+	title: "Home | AniWave | Watch Free Anime,  Online Anime Streaming - Aniwave clone",
 	description:
 		"Aniwave clone is educational purpose website. Its a online anime streaming at aniwave with DUB, SUB in HD.",
 };
