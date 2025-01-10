@@ -20,7 +20,7 @@ export default async function AsideRank() {
 	const topTodays = await fetchEpisodes(topTodayAnime);
 
 	return (
-		<aside className='w-1/4 min-w-[320px] flex-shrink-0 px-[10px] bg-#0E0E0E space-y-2'>
+		<aside className='w-full min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 lg:px-[10px]  lg:w-1/4'>
 			<div className='flex justify-between'>
 				<h2>Top Anime</h2>
 				<div className='flex gap-3'>
@@ -32,7 +32,7 @@ export default async function AsideRank() {
 			{topTodays.map((anime, index) => {
 				const borderColor = index < 3 ? borderColors[index] : "border-none";
 				return (
-					<div key={index} className={`aside-card border-r-2 ${borderColor}`}>
+					<div key={index} className={`aside-card border-r-[2px] ${borderColor}`}>
 						<div className='rank-background w-[50px] h-[55px]'>
 							{rankImages[index] ? (
 								<Image
@@ -47,7 +47,7 @@ export default async function AsideRank() {
 							)}
 						</div>
 
-						<span className='relative w-[60px] h-[78px]'>
+						<span className='relative w-[50px]  h-[65px] xl:w-[60px] xl:h-[78px]'>
 							{anime.coverImage?.medium ? (
 								<Image
 									src={anime.coverImage.medium}

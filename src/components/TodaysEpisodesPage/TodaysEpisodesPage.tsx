@@ -11,7 +11,7 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 
 	return (
 		<div className={`w-full ${className}`}>
-			<div className='flex flex-col md:flex-row justify-between mb-4'>
+			<div className='flex  flex-col md:flex-row justify-between mb-4'>
 				<h1 className='text-2xl font-semibold text-gray-300 witespace-nowrap text-[2rem]'>
 					Recent Updates
 				</h1>
@@ -34,7 +34,7 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 				</div>
 			</div>
 
-			<ul className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
+			<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
 				{episodes.map((anime, index) => (
 					<div key={index}>
 						<li className='relative flex flex-col  items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
@@ -77,7 +77,7 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 							</div>
 						</li>
 						<div className=' mt-[12.15px] mb-[10.125px] text-[#aaa] text-[16.2px] font-medium line-clamp-2 leading-[1.5rem] max-h-[3rem] overflow-hidden h-[3.75rem]'>
-							{anime.title.english}
+							{anime.title.english || anime.title.romaji || "Anime Cover"}
 						</div>
 					</div>
 				))}

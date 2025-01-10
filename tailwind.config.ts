@@ -28,6 +28,7 @@ export default {
 				borderGray: "#303030", // Example: Borders or outlines
 				navbarBackground: "#1C1C1C",
 				customDark: "#242424",
+				itemBackground: "#1c1c1c",
 			},
 
 			container: {
@@ -37,6 +38,12 @@ export default {
 					xl: "1800px", // Custom max width for xl and larger
 				},
 			},
+		},
+		screens: {
+			sm: "640px", // Default Tailwind `sm`
+			md: "996px", // Default Tailwind `md`
+			lg: "1200px", // Custom `lg`
+			xl: "1449.98px", // Custom `xl`
 		},
 	},
 	plugins: [],
