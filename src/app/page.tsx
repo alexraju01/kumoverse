@@ -1,7 +1,7 @@
 import TodaysEpisodesPage from "@/components/TodaysEpisodesPage/TodaysEpisodesPage";
 
 import AsideRank from "@/components/AsideRank";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 
 export default function Home() {
 	return (
@@ -10,7 +10,6 @@ export default function Home() {
 				<TodaysEpisodesPage className='   bg-[#0E0E0E]' />
 				<AsideRank />
 			</div>
-			<Footer />
 		</div>
 	);
 }

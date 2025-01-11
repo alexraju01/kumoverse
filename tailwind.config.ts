@@ -11,6 +11,9 @@ export default {
 			// fontFamily: {
 			// 	sans: ["var(--font-nunito)", "sans-serif"], // Use Nunito as the default sans-serif
 			// },
+			backgroundImage: {
+				"footer-bg": "url('../../public/bg-footer.jpg')",
+			},
 
 			fontSize: {
 				base: "12px",
