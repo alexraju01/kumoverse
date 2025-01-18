@@ -60,6 +60,11 @@ export default async function AsideRank() {
 								<div className='w-full h-full bg-gray-200'>No Image</div> // Placeholder for missing image
 							)}
 						</span>
+						<div className='px-[15px]'>
+							<div className='text-[1.2rem] leading-[1.5rem] max-h-[3rem] overflow-hidden line-clamp-2'>
+								{anime.title.english}
+							</div>
+						</div>
 					</div>
 				);
 			})}
