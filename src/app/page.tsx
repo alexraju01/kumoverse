@@ -1,7 +1,6 @@
 import TodaysEpisodesPage from "@/components/TodaysEpisodesPage/TodaysEpisodesPage";
 
 import AsideRank from "@/components/AsideRank";
-// import Footer from "@/components/Footer";
 
 export default function Home() {
 	return (

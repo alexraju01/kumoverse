@@ -5,6 +5,7 @@ import { ClassName } from "@/types/props";
 import Image from "next/image";
 import EpisodeNumber from "./EpisodeNumber";
 import { Anime } from "@/types/anime";
+import Schedule from "../Schedule";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes: Anime[] = await fetchEpisodes(todaysEpisode);
@@ -82,6 +83,7 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 					</div>
 				))}
 			</ul>
+			<Schedule />
 		</div>
 	);
 }
