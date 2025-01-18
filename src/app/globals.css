@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-	font-size: 12px;
-}
-
 .aside-card {
 	@apply bg-itemBackground  rounded overflow-hidden transition-all duration-200 flex items-center;
 }

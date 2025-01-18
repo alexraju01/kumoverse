@@ -36,7 +36,9 @@ export default {
 
 			container: {
 				center: true,
-				padding: "10px",
+				padding: {
+					DEFAULT: "10px",
+				},
 				screens: {
 					xl: "1800px", // Custom max width for xl and larger
 				},
