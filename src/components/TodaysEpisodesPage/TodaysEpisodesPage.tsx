@@ -52,17 +52,14 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 									quality={100}
 								/>
 							</div>
-							<div className='flex justify-between px-[5px] text-sm font-semibold bg-[#242424] text-[#aaa] absolute bottom-0 left-0 w-full h-8 leading-8 text-center z-10 overflow rounded-b-[5px]'>
-								<div className='flex gap-1 items-center'>
+							<div className='flex justify-between px-[8px] text-sm font-semibold bg-[#242424] text-[#aaa] absolute bottom-0 left-0 w-full h-8 leading-8 text-center z-10 overflow rounded-b-[5px] '>
+								<div className='flex gap-[6px] items-center'>
 									<div
-										className="relative px-1 h-[1.29rem] leading-[1.29rem] mr-2 inline-block rounded-[1.5px] align-baseline
-										before:absolute before:left-[-2.5px] before:top-0 before:w-[calc(100%_+_5px)] before:h-[1.29rem] before:content-[''] 
-										before:transform before:skew-x-[345deg] before:rounded-[1.5px]  before:bg-[#552A92] before:z-[1]">
-										{/* <span className='relative z-[2] text-[#bbb]'>
-											{anime.nextAiringEpisode?.episode
-												? `${anime.nextAiringEpisode.episode - 1}`
-												: "CC"}
-										</span> */}
+										className="relative px-1 h-[1.29rem] leading-[1.29rem]  inline-block rounded-[1.5px] align-baseline
+  before:absolute before:left-[-2.5px] before:top-0  before:w-[calc(100%_+_1px)] before:h-[1.29rem] before:content-[''] 
+  before:transform before:rounded-[1.5px] before:bg-[#552A92] before:z-[1]
+  after:absolute after:right-[-2.5px] after:left-0 after:top-0 after:w-[calc(100%_+_0px)] after:h-[1.29rem]   after:content-[''] 
+  after:origin-right after:rounded-[1.5px] after:bg-[#552A92] after:z-[0] after:skew-x-[345deg] ">
 										<EpisodeNumber anime={anime} />
 									</div>
 									{anime.episodes && (
