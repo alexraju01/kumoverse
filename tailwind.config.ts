@@ -50,6 +50,9 @@ export default {
 			lg: "1200px", // Custom `lg`
 			xl: "1449.98px", // Custom `xl`
 		},
+		fontFamily: {
+			BebasNeue: ["var(--font-bebas-neue)"],
+		},
 	},
 	plugins: [],
 } satisfies Config;

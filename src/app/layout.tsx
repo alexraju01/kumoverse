@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer/Footer";
@@ -8,6 +9,13 @@ const nunito = Nunito({
 	subsets: ["latin"], // Choose subsets based on your needs
 	weight: ["400", "600", "700"], // Choose font weights needed
 });
+
+const BebasNeue = localFont({
+	src: "./fonts/BebasNeueVF.ttf", // Choose subsets based on your needs
+	variable: "--font-bebas-neue",
+	weight: "400 700", // Choose font weights needed
+});
+
 export const metadata: Metadata = {
 	title: "Home | AniWave | Watch Free Anime,  Online Anime Streaming - Aniwave clone",
 	description:
@@ -21,7 +29,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className='text-base'>
-			<body className={`${nunito.className}  antialiased bg-primary   text-textPrimary`}>
+			<body
+				className={`${nunito.className} ${BebasNeue.variable}  antialiased bg-primary   text-textPrimary`}>
 				<header className='bg-navbarBackground mt-0 fixed w-full z-[50] transition-background duration-200 mb-[10px]'>
 					<Navbar />
 				</header>
