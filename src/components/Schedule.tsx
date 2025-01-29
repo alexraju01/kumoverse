@@ -6,7 +6,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 export default function Schedule() {
 	return (
-		<div className=''>
+		<div className=' mb-[40px] rounded-md overflow-hidden'>
 			<div className='relative pt-[20px]  px-[10px]  h-[168px]'>
 				{/* Background Image */}
 				<Image
@@ -76,6 +76,13 @@ export default function Schedule() {
 						</span>
 					</div>
 				</div>
+			</div>
+			<div className='bg-[#171717] w-full '>
+				<div className=' items py-[20px]'>items1 </div>
+				<div className=' items py-[20px]'>items1 </div>
+			</div>
+			<div className='bg-[#181818] border-t border-[#202020] text-center p-[12px] text-[1.1rem] cursor-pointer transition-all duration-300 text-[#666] hover:bg-[#1d1d1d] hover:text-[#aaa]'>
+				Show more
 			</div>
 		</div>
 	);
