@@ -9,3 +9,7 @@
 .rank-background {
 	@apply w-[50px] h-[55px] bg-contain bg-no-repeat bg-center self-center px-[10px] flex-shrink-0 relative;
 }
+
+.navar-toggle-span {
+	@apply flex w-[26.6px] h-[4px] pointer-events-none relative bg-[#ddd] z-[1] origin-[5px_0] rounded-[1px] my-[3.65px];
+}

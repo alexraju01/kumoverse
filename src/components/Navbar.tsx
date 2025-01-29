@@ -8,9 +8,9 @@ export default function Navbar() {
 			<div className='start h-full flex items-center'>
 				<div className='menu'></div>
 				<div className='menu-toggler inline-block text-[1.5rem] cursor-pointer w-[26.6px] h-[26.6px] p-[10px] box-content mr-[10px]'>
-					<i className='flex w-[26.6px] h-[4px] pointer-events-none relative bg-[#ddd] z-[1] origin-[5px_0] rounded-[1px] my-[3.65px]'></i>
-					<i className='flex w-[26.6px] h-[4px] pointer-events-none relative bg-[#ddd] z-[1] origin-[5px_0] rounded-[1px] my-[3.65px] '></i>
-					<i className='flex w-[26.6px] h-[4px] pointer-events-none relative bg-[#ddd] z-[1] origin-[5px_0] rounded-[1px] my-[3.65px] '></i>
+					<i className='navar-toggle-span'></i>
+					<i className='navar-toggle-span'></i>
+					<i className='navar-toggle-span'></i>
 				</div>
 				<div className='logo  min-w-[91px] min-h-[27px]  max-w-[143.3px] max-h-[43.9px] w-full'>
 					<Link href='/'>
