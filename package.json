@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@apollo/client": "^3.12.4",
+		"@testing-library/user-event": "^14.6.1",
 		"date-fns": "^4.1.0",
 		"graphql": "^16.10.0",
 		"graphql-request": "^7.1.2",
