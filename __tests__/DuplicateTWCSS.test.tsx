@@ -1,19 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Navbar from "@/components/Navbar";
+import Schedule from "@/components/Schedule";
 
-describe("Navbar component", () => {
-	it("renders correctly", () => {
-		render(<Navbar />);
-		const nav = screen.getByRole("navigation");
-		expect(nav).toBeInTheDocument();
-	});
-
-	it("should not contain duplicate long Tailwind class strings", () => {
-		const { container } = render(<Navbar />);
+describe("Tailwind class duplication test", () => {
+	const checkForDuplicateTailwindClasses = (component) => {
+		const { container } = render(component);
 		const allElements = container.querySelectorAll("*");
 
 		const classOccurrences = new Map();
-		const MIN_CLASS_LENGTH = 20; // Threshold: Only flag classes longer than 20 characters
+		const MIN_CLASS_LENGTH = 20; // Threshold to ignore short utility classes
 
 		allElements.forEach((element) => {
 			const className = element.getAttribute("class");
@@ -22,17 +17,17 @@ describe("Navbar component", () => {
 				// Normalize by trimming and removing extra spaces
 				const normalizedClass = className.trim().replace(/\s+/g, " ");
 
-				// Ignore short class names (likely utility or reusable classes)
+				// Ignore short class names
 				if (normalizedClass.length < MIN_CLASS_LENGTH) {
 					return;
 				}
 
-				// Track occurrences of long classes
+				// Track occurrences
 				classOccurrences.set(normalizedClass, (classOccurrences.get(normalizedClass) || 0) + 1);
 			}
 		});
 
-		// Detect duplicate long Tailwind class strings
+		// Find duplicate class strings
 		const duplicates = Array.from(classOccurrences.entries()).filter(([, count]) => count > 1);
 
 		if (duplicates.length > 0) {
@@ -47,5 +42,13 @@ describe("Navbar component", () => {
 		}
 
 		expect(duplicates.length).toBe(0);
+	};
+
+	it("Navbar should not contain duplicate long Tailwind class strings.", () => {
+		checkForDuplicateTailwindClasses(<Navbar />);
+	});
+
+	it("Schedule should not contain duplicate long Tailwind class strings.", () => {
+		checkForDuplicateTailwindClasses(<Schedule />);
 	});
 });

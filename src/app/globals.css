@@ -13,3 +13,19 @@
 .navar-toggle-span {
 	@apply flex w-[26.6px] h-[4px] pointer-events-none relative bg-[#ddd] z-[1] origin-[5px_0] rounded-[1px] my-[3.65px];
 }
+
+.day {
+	@apply w-[33.33333333%] md:w-[20%] lg:w-[14.2857142857%] flex-shrink-0;
+}
+
+.inner-day {
+	@apply uppercase text-[#444] transition-all duration-300 float-left relative cursor-pointer pb-5;
+}
+
+.day-text {
+	@apply font-BebasNeue text-[4.2rem] h-[45px] leading-[45px];
+}
+
+.chevron-icon {
+	@apply text-[3rem] text-[#AAAAAA] font-black;
+}
