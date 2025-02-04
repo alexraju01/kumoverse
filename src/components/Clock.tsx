@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 export default function Clock() {
-	const [time, setTime] = useState(new Date());
+	const [time, setTime] = useState(new Date()); // states
 
 	useEffect(() => {
 		const updateClock = () => setTime(new Date());
