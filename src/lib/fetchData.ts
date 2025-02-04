@@ -12,6 +12,9 @@ export default async function fetchEpisodes(query: string): Promise<Anime[]> {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ query }),
+		/** 🚀 Ensure fresh data by disabling cache **/
+		cache: "no-store", // Ensures always fresh data
+		next: { revalidate: 0 }, // No ISR, forces request on every load
 	});
 
 	if (!response.ok) {
