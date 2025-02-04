@@ -18,7 +18,10 @@ export default function Schedule() {
 				/>
 				{/* Content Above Image */}
 				<div className='relative '>
-					<div className='text-[2rem] font-semibold'>Estimated Schedule {<Clock />}</div>
+					<div className='text-[2rem] font-semibold'>
+						{" "}
+						<Clock />
+					</div>
 					<div className='flex items-center mt-[15px]'>
 						<div className='text-3xl w-[50px] flex justify-center cursor-pointer  self-end h-[45px] leading-[45px] overflow-hidden mb-5 flex-shrink-0'>
 							<FaChevronLeft className='chevron-icon ' />
