@@ -4,10 +4,14 @@ import rank2 from "../../public/rank/2.png";
 import rank3 from "../../public/rank/3.png";
 import rank4 from "../../public/rank/4.png";
 import rank5 from "../../public/rank/5.png";
+import rank6 from "../../public/rank/6.png";
+import rank7 from "../../public/rank/7.png";
+import rank8 from "../../public/rank/8.png";
+import rank9 from "../../public/rank/9.png";
 
 import Image from "next/image";
 
-const rankImages = [rank1, rank2, rank3, rank4, rank5];
+const rankImages = [rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9];
 const borderColors: Record<number, string> = {
 	0: "border-[#812bf9]", // First rank
 	1: "border-[#bd4c60]", // Second rank
