@@ -49,6 +49,7 @@ export default {
 			md: "996px", // Default Tailwind `md`
 			lg: "1200px", // Custom `lg`
 			xl: "1449.98px", // Custom `xl`
+			"2xl": "1800px",
 		},
 		fontFamily: {
 			BebasNeue: ["var(--font-bebas-neue)"],

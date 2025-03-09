@@ -3,7 +3,7 @@ import bgFooter from "../../../public/bg-footer.jpg";
 import AZList from "./AZList";
 export default function Footer() {
 	return (
-		<footer className='w-full px-[10px] relative py-[80px] mt-[60px]'>
+		<footer className='w-full px-[10px] relative py-[80px] mt-[60px] 2xl:px-[60px]'>
 			<Image
 				src={bgFooter}
 				quality={100}

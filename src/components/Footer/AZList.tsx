@@ -14,7 +14,7 @@ export default function AZList() {
 					<li key={index} className='float-left ml-[8px]'>
 						<Link
 							href={`/${item === "All" ? "" : item}`}
-							className='block font-semibold py-[2px] px-[7px] text-[1.3rem] rounded-[3px] mb-[5px] bg-[#2e2e2e] text-[#aaa]'>
+							className='block font-semibold py-[2px] px-[7px] text-[1.3rem] rounded-[3px] mb-[5px] bg-[#2e2e2e] text-[#aaa] hover:bg-[#5a2e98]'>
 							{item}
 						</Link>
 					</li>
