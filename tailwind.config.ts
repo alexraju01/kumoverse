@@ -16,7 +16,7 @@ export default {
 			},
 
 			fontSize: {
-				base: "12px",
+				base: "13.5px",
 			},
 			colors: {
 				// background: "var(--background)",

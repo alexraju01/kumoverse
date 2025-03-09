@@ -19,12 +19,14 @@ const borderColors: Record<number, string> = {
 };
 
 import { topTodayAnime } from "@/query/topTodayAnime";
+import { capitalizeWords } from "@/lib/capitalise";
+import EpisodeNumber from "./TodaysEpisodesPage/EpisodeNumber";
 
 export default async function AsideRank() {
 	const topTodays = await fetchEpisodes(topTodayAnime);
 
 	return (
-		<aside className='w-full min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 lg:px-[10px]  lg:w-1/4'>
+		<aside className='w-full px-[1rem] min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 lg:px-[10px]  lg:w-1/4'>
 			<div className='flex justify-between'>
 				<h2>Top Anime</h2>
 				<div className='flex gap-3'>
@@ -51,23 +53,31 @@ export default async function AsideRank() {
 							)}
 						</div>
 
-						<span className='relative w-[50px]  h-[65px] xl:w-[60px] xl:h-[78px]'>
+						<div>
 							{anime.coverImage?.medium ? (
-								<Image
-									src={anime.coverImage.medium}
-									alt={`Rank ${index + 1}`}
-									fill
-									sizes='(max-width: 768px) 100px, 150px'
-									className='object-cover'
-								/>
+								<div className='relative w-[50px] h-[65px]  xl:w-[60px] xl:h-[78px]'>
+									<Image
+										src={anime.coverImage.medium}
+										alt={`Rank ${index + 1}`}
+										fill
+										sizes='(max-width: 768px) 100px, 150px'
+										className='object-cover' // Ensures images retain aspect ratio
+									/>
+								</div>
 							) : (
-								<div className='w-full h-full bg-gray-200'>No Image</div> // Placeholder for missing image
+								<div className='w-full h-full bg-gray-200'>No Image</div>
 							)}
-						</span>
-						<div className='px-[15px]'>
-							<div className='text-[1.2rem] leading-[1.5rem] max-h-[3rem] overflow-hidden line-clamp-2'>
-								{anime.title.english}
-							</div>
+						</div>
+						<div className=' mx-5 text-[#aaa]'>
+							<p className=' font-medium mb-1.5  text-[1.2rem] leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
+								{capitalizeWords(anime.title.english.toLowerCase())}
+							</p>
+
+							<div className='flex flex-wrap  font-medium mb-1.5 text-[1.5rem] leading-6 line-clamp-2'></div>
+							{/* <div>Num</div> */}
+
+							{/* <div className='text-[1.2rem] leading-[1.5rem] max-h-[3rem] overflow-hidden line-clamp-2'></div> */}
+							{/* <EpisodeNumber anime={anime} /> */}
 						</div>
 					</div>
 				);
