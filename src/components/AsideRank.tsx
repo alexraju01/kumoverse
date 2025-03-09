@@ -76,8 +76,7 @@ export default async function AsideRank() {
 							<div className='flex flex-wrap  font-medium mb-1.5 text-[1.5rem] leading-6 line-clamp-2'></div>
 							{/* <div>Num</div> */}
 
-							{/* <div className='text-[1.2rem] leading-[1.5rem] max-h-[3rem] overflow-hidden line-clamp-2'></div> */}
-							{/* <EpisodeNumber anime={anime} /> */}
+							<EpisodeNumber anime={anime} />
 						</div>
 					</div>
 				);
