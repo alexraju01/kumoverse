@@ -17,9 +17,8 @@ const BebasNeue = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Home | AniWave | Watch Free Anime,  Online Anime Streaming - Aniwave clone",
-	description:
-		"Aniwave clone is educational purpose website. Its a online anime streaming at aniwave with DUB, SUB in HD.",
+	title: "Home | Kumoverse | Watch Free Anime",
+	description: "Kumoverse is an Aniwave clone and is created for educational purpose website.",
 };
 
 export default function RootLayout({
