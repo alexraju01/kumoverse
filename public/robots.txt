@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kumoverse.netlify.app/
+
+# Sitemaps
+Sitemap: https://kumoverse.netlify.app/sitemap.xml
