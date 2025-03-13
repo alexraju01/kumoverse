@@ -26,7 +26,7 @@ export default async function AsideRank() {
 	const topTodays = await fetchEpisodes(topTodayAnime);
 
 	return (
-		<aside className='w-full px-[1rem] min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 lg:px-[10px]  lg:w-1/4'>
+		<aside className='w-full px-[1rem] min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 xl:px-[10px]  xl:w-1/4'>
 			<div className='flex justify-between'>
 				<h2>Top Anime</h2>
 				<div className='flex bg-itemBackground p-[3px] items-center rounded-[5px]'>
@@ -75,7 +75,7 @@ export default async function AsideRank() {
 							)}
 						</div>
 						<div className=' mx-5 text-[#aaa]'>
-							<p className=' font-medium mb-1.5  text-[1.2rem] leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
+							<p className=' font-medium mb-1.5  text-[1.2rem] lg:text-[1.4rem]  leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
 								{capitalizeWords(anime.title.english.toLowerCase())}
 							</p>
 

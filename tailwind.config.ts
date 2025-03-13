@@ -16,7 +16,7 @@ export default {
 			},
 
 			fontSize: {
-				base: "13.5px",
+				base: "12px",
 			},
 			colors: {
 				// background: "var(--background)",
@@ -45,10 +45,10 @@ export default {
 			},
 		},
 		screens: {
-			sm: "640px", // Default Tailwind `sm`
-			md: "996px", // Default Tailwind `md`
-			lg: "1200px", // Custom `lg`
-			xl: "1449.98px", // Custom `xl`
+			sm: "480px", // Default Tailwind `sm`
+			md: "768px", // Default Tailwind `md`
+			lg: "992px", // Custom `lg`
+			xl: "1200px", // Custom `xl`
 			"2xl": "1800px",
 		},
 		fontFamily: {

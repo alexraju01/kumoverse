@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/*  */
+
 .aside-card {
 	@apply bg-itemBackground  rounded overflow-hidden transition-all duration-200 flex items-center;
 }
