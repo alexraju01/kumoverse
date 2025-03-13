@@ -30,9 +30,9 @@ export default async function AsideRank() {
 			<div className='flex justify-between'>
 				<h2>Top Anime</h2>
 				<div className='flex bg-itemBackground p-[3px] items-center rounded-[5px]'>
-					<p className='.aside-toogle-tab'>Day</p>
-					<p className='.aside-toogle-tab'>Week</p>
-					<p className='.aside-toogle-tab'>Month</p>
+					<p className='aside-toogle-tab'>Day</p>
+					<p className='aside-toogle-tab'>Week</p>
+					<p className='aside-toogle-tab'>Month</p>
 				</div>
 			</div>
 			{topTodays.map((anime, index) => {
