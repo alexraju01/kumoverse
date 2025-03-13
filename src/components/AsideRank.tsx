@@ -30,15 +30,9 @@ export default async function AsideRank() {
 			<div className='flex justify-between'>
 				<h2>Top Anime</h2>
 				<div className='flex bg-itemBackground p-[3px] items-center rounded-[5px]'>
-					<p className='px-[8px] py-[2px] rounded-[3px] font-semibold cursor-pointer transition-all duration-200 hover:bg-[#9d9d9d]'>
-						Day
-					</p>
-					<p className='px-[8px] py-[2px] rounded-[3px] font-semibold cursor-pointer transition-all duration-200 hover:bg-[#9d9d9d]'>
-						Week
-					</p>
-					<p className='px-[8px] py-[2px] rounded-[3px] font-semibold cursor-pointer transition-all duration-200 hover:bg-[#9d9d9d]'>
-						Month
-					</p>
+					<p className='.aside-toogle-tab'>Day</p>
+					<p className='.aside-toogle-tab'>Week</p>
+					<p className='.aside-toogle-tab'>Month</p>
 				</div>
 			</div>
 			{topTodays.map((anime, index) => {
@@ -75,7 +69,7 @@ export default async function AsideRank() {
 							)}
 						</div>
 						<div className=' mx-5 text-[#aaa]'>
-							<p className=' font-medium mb-1.5  text-[1.2rem] lg:text-[1.4rem]  leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
+							<p className=' font-medium mb-1.5  text-[1.2rem] 2xl:text-[1.4rem]  leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
 								{capitalizeWords(anime.title.english.toLowerCase())}
 							</p>
 

@@ -6,6 +6,7 @@ import Image from "next/image";
 import EpisodeNumber from "./EpisodeNumber";
 import { Anime } from "@/types/anime";
 import Schedule from "../Schedule";
+import { capitalizeWords } from "@/lib/capitalise";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes: Anime[] = await fetchEpisodes(todaysEpisode);
@@ -58,8 +59,8 @@ export default async function TodaysEpisodesPage({ className }: ClassName) {
 								<div>TV</div>
 							</div>
 						</li>
-						<div className=' mt-[12.15px] mb-[10.125px] text-[#aaa] text-[1.2rem] lg:text-[1.4rem] font-medium line-clamp-2 leading-[1.5rem] max-h-[3rem] overflow-hidden h-[3.75rem]'>
-							{anime.title.english || anime.title.romaji || "Anime Cover"}
+						<div className=' mt-[12.15px] mb-[10.125px] text-[#aaa] text-[1.2rem] 2xl:text-[1.4rem] font-medium line-clamp-2 leading-[1.5rem] max-h-[3rem] overflow-hidden h-[3.75rem]'>
+							{capitalizeWords(anime.title.english) || anime.title.romaji || "Anime Cover"}
 						</div>
 					</div>
 				))}

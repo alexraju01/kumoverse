@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/*  */
+.aside-toogle-tab {
+	@apply px-[8px] py-[2px] rounded-[3px] font-semibold cursor-pointer transition-all duration-200 hover:bg-[#5a2e98];
+}
 
 .aside-card {
 	@apply bg-itemBackground  rounded overflow-hidden transition-all duration-200 flex items-center;
