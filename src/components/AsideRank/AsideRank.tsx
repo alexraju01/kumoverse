@@ -1,13 +1,13 @@
 import fetchEpisodes from "@/lib/fetchData";
-import rank1 from "../../public/rank/1.png";
-import rank2 from "../../public/rank/2.png";
-import rank3 from "../../public/rank/3.png";
-import rank4 from "../../public/rank/4.png";
-import rank5 from "../../public/rank/5.png";
-import rank6 from "../../public/rank/6.png";
-import rank7 from "../../public/rank/7.png";
-import rank8 from "../../public/rank/8.png";
-import rank9 from "../../public/rank/9.png";
+import rank1 from "../../../public/rank/1.png";
+import rank3 from "../../../public/rank/3.png";
+import rank4 from "../../../public/rank/4.png";
+import rank2 from "../../../public/rank/2.png";
+import rank5 from "../../../public/rank/5.png";
+import rank6 from "../../../public/rank/6.png";
+import rank7 from "../../../public/rank/7.png";
+import rank8 from "../../../public/rank/8.png";
+import rank9 from "../../../public/rank/9.png";
 
 import Image from "next/image";
 
@@ -20,7 +20,7 @@ const borderColors: Record<number, string> = {
 
 import { topTodayAnime } from "@/query/topTodayAnime";
 import { capitalizeWords } from "@/lib/capitalise";
-import EpisodeNumber from "./TodaysEpisodesPage/EpisodeNumber";
+import EpisodeNumber from "../TodaysEpisodesPage/EpisodeNumber";
 
 export default async function AsideRank() {
 	const topTodays = await fetchEpisodes(topTodayAnime);

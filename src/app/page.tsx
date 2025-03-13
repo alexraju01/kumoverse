@@ -1,6 +1,5 @@
-import TodaysEpisodesPage from "@/components/TodaysEpisodesPage/TodaysEpisodesPage";
+import { AsideRank, TodaysEpisodesPage } from "@/components";
 
-import AsideRank from "@/components/AsideRank";
 import Link from "next/link";
 
 export default function Home() {

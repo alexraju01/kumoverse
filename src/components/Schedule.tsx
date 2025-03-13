@@ -1,6 +1,6 @@
 import Image from "next/image";
 import scheduleImg from "../../public/bg-schedule.png";
-import Clock from "./Clock";
+import Clock from "./Footer/Clock";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 // import { FaChevronLeft } from "react-icons/fa";
 
