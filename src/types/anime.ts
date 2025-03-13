@@ -20,4 +20,5 @@ export interface Anime {
 	nextAiringEpisode?: NextAiringEpisode | null;
 	coverImage: CoverImage;
 	episodes?: number | null;
+	popularity?: number;
 }

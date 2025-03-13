@@ -1,5 +1,8 @@
 import fetchEpisodes from "@/lib/fetchData";
 import { airingTodayAnime } from "@/query/airingTodayAnime";
+import { insertRecentAnimeBatch } from "@/query/pg_query/insertRecentAnime";
+// import { InsertRecentAnimeBatch } from "@/query/pg_query/insertRecentAnime";
+// import { InsertRecentAnime } from "@/query/pg_query/insertRecentAnime";
 import { Anime } from "@/types/anime";
 import Image from "next/image";
 
@@ -15,6 +18,7 @@ const getTodayTimestamps = () => {
 const fetchAiringTodayAnime = async () => {
 	try {
 		const data = await fetchEpisodes(airingTodayAnime);
+		insertRecentAnimeBatch(data);
 		const { startOfDay, endOfDay } = getTodayTimestamps();
 
 		// Filter anime that are airing today
@@ -22,7 +26,6 @@ const fetchAiringTodayAnime = async () => {
 			const airingAt = anime.nextAiringEpisode?.airingAt;
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
-
 		return airingToday;
 	} catch (error) {
 		console.error(error);
