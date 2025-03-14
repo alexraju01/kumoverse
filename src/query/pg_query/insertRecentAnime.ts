@@ -18,6 +18,7 @@ export const insertRecentAnimeBatch = async (animeData: Anime[]) => {
             $1::text[], $2::text[], $3::timestamp[], $4::int[], 
             $5::text[], $6::text[], $7::int[], $8::int[]
         )
+        ON CONFLICT (romaji_title, episode) DO NOTHING
         RETURNING *;
     `;
 
@@ -38,7 +39,7 @@ export const insertRecentAnimeBatch = async (animeData: Anime[]) => {
 		const res = await client.query(query, values);
 		await client.query("COMMIT");
 
-		console.log(`✅ Inserted ${res.rowCount} anime records.`);
+		console.log(`✅ Inserted ${res.rowCount} new anime records.`);
 
 		return res.rows; // Return inserted rows
 	} catch (err) {

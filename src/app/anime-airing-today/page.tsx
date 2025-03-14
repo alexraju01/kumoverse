@@ -18,7 +18,6 @@ const getTodayTimestamps = () => {
 const fetchAiringTodayAnime = async () => {
 	try {
 		const data = await fetchEpisodes(airingTodayAnime);
-		insertRecentAnimeBatch(data);
 		const { startOfDay, endOfDay } = getTodayTimestamps();
 
 		// Filter anime that are airing today
@@ -26,6 +25,7 @@ const fetchAiringTodayAnime = async () => {
 			const airingAt = anime.nextAiringEpisode?.airingAt;
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
+		insertRecentAnimeBatch(airingToday);
 		return airingToday;
 	} catch (error) {
 		console.error(error);
