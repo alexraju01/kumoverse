@@ -12,15 +12,21 @@ export const insertRecentAnimeBatch = async (animeData: Anime[]) => {
 	try {
 		// Constructing query dynamically with parameterized placeholders
 		const query = `
-        INSERT INTO recent_anime 
-        (romaji_title, english_title, airing_at, episode, cover_image_medium, cover_image_large, episodes, popularity)
-        SELECT * FROM UNNEST (
-            $1::text[], $2::text[], $3::timestamp[], $4::int[], 
-            $5::text[], $6::text[], $7::int[], $8::int[]
-        )
-        ON CONFLICT (romaji_title, episode) DO NOTHING
-        RETURNING *;
-    `;
+         INSERT INTO recent_anime 
+         (romaji_title, english_title, airing_at, episode, cover_image_medium, cover_image_large, episodes, popularity)
+         SELECT * FROM UNNEST (
+             $1::text[], $2::text[], $3::timestamp[], $4::int[], 
+             $5::text[], $6::text[], $7::int[], $8::int[]
+         )
+         ON CONFLICT (romaji_title, episode) 
+         DO UPDATE SET 
+             airing_at = EXCLUDED.airing_at,
+             cover_image_medium = EXCLUDED.cover_image_medium,
+             cover_image_large = EXCLUDED.cover_image_large,
+             episodes = EXCLUDED.episodes,
+             popularity = EXCLUDED.popularity
+         RETURNING *;
+     `;
 
 		const values = [
 			animeData.map((a) => a.title.romaji),
@@ -39,10 +45,11 @@ export const insertRecentAnimeBatch = async (animeData: Anime[]) => {
 		const res = await client.query(query, values);
 		await client.query("COMMIT");
 
-		console.log(`✅ Inserted ${res.rowCount} new anime records.`);
+		console.log(`✅ Inserted or updated ${res.rowCount} anime records.`);
 
-		return res.rows; // Return inserted rows
+		return res.rows; // Return inserted/updated rows
 	} catch (err) {
+		await client.query("ROLLBACK");
 		console.error("❌ Error inserting anime batch:", err);
 		throw new Error("Database insertion failed.");
 	} finally {
