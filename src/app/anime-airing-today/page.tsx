@@ -4,7 +4,7 @@ import { FetchAnimeList } from "@/query/pg_query/FetchAnimeList";
 import { insertRecentAnimeBatch } from "@/query/pg_query/insertRecentAnime";
 // import { InsertRecentAnimeBatch } from "@/query/pg_query/insertRecentAnime";
 // import { InsertRecentAnime } from "@/query/pg_query/insertRecentAnime";
-import { Anime } from "@/types/anime";
+import { Anime, APIAnime } from "@/types/anime";
 import Image from "next/image";
 
 // Function to get Unix timestamps for today's start and end
@@ -38,7 +38,6 @@ const fetchAiringTodayAnime = async () => {
 export default async function AnimeAiringTodayPage() {
 	const animeList = await fetchAiringTodayAnime();
 	const GetAnimeList = await FetchAnimeList();
-	console.log(GetAnimeList);
 
 	return (
 		<div className='p-6'>
@@ -80,7 +79,7 @@ export default async function AnimeAiringTodayPage() {
 				<p>No anime airing today.</p>
 			) : (
 				<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
-					{GetAnimeList.map((anime: any, index) => (
+					{GetAnimeList.map((anime: APIAnime, index) => (
 						<div key={index}>
 							<li className='relative flex flex-col items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
 								<div className='relative w-full aspect-[5/7]'>

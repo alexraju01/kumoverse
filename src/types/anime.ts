@@ -22,3 +22,14 @@ export interface Anime {
 	episodes?: number | null;
 	popularity?: number;
 }
+
+export interface APIAnime {
+	romaji_title: string;
+	english_title: string;
+	airing_at?: string | null;
+	episode?: number | null;
+	cover_image_medium: string;
+	cover_image_large: string;
+	episodes?: number | null;
+	popularity?: number;
+}
