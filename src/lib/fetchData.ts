@@ -1,27 +1,40 @@
-// d
-
 import { Anime } from "@/types/anime";
 import { ApiResponse } from "@/types/fetchData";
 
+const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
 const ANILIST_API_URL = "https://graphql.anilist.co";
 
-export default async function fetchEpisodes(query: string): Promise<Anime[]> {
-	const response = await fetch(ANILIST_API_URL, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ query }),
-		/** 🚀 Ensure fresh data by disabling cache **/
-		cache: "no-store", // Ensures always fresh data
-		next: { revalidate: 0 }, // No ISR, forces request on every load
-	});
+export default async function fetchData(
+	endpointOrQuery: string | object,
+	isGraphQL = false
+): Promise<Anime[]> {
+	const url = isGraphQL ? ANILIST_API_URL : `${BASE_API_URL}${endpointOrQuery}`;
+	const payload =
+		isGraphQL && typeof endpointOrQuery === "string" ? { query: endpointOrQuery } : endpointOrQuery;
 
-	if (!response.ok) {
-		throw new Error("Failed to fetch data from AniList API");
+	try {
+		const response = await fetch(url, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(payload),
+			cache: "no-store",
+			next: { revalidate: 0 },
+		});
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch data from ${isGraphQL ? "AniList" : "API"}`);
+		}
+
+		const data: ApiResponse = await response.json();
+
+		// Ensure correct data extraction
+		if (isGraphQL && "data" in data) {
+			return data.data.Page.media || []; // Extract media for GraphQL response
+		}
+
+		return Array.isArray(data) ? data : []; // Ensure REST API response is an array
+	} catch (error) {
+		console.error("Fetch error:", error);
+		throw error;
 	}
-
-	const data: ApiResponse = await response.json();
-
-	return data.data.Page.media;
 }

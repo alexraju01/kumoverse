@@ -1,14 +1,14 @@
 // components/TodaysEpisodesPage.tsx
 import { ClassName } from "@/types/props";
-import fetchEpisodes from "@/lib/fetchData";
 import { todaysEpisode } from "@/query/todaysEpisode";
 import { Anime } from "@/types/anime";
 // import EpisodeList from "./EpisodeList";
 import Schedule from "../Schedule";
 import EpisodeList from "./EpisodeList";
+import fetchData from "@/lib/fetchData";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
-	const episodes: Anime[] = await fetchEpisodes(todaysEpisode); // Server fetch
+	const episodes: Anime[] = await fetchData(todaysEpisode, true); // Server fetch
 	return (
 		<div className={`w-full ${className}`}>
 			{/* <div className='flex flex-col md:flex-row justify-between mb-4'>

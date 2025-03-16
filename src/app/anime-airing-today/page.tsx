@@ -1,18 +1,15 @@
-import fetchEpisodes from "@/lib/fetchData";
+// import fetchEpisodes from "@/lib/fetchData";
+import fetchData from "@/lib/fetchData";
+import { getTodayTimestamps } from "@/lib/getTodayTimestamps";
 import { airingTodayAnime } from "@/query/airingTodayAnime";
 import { Anime } from "@/types/anime";
 import Image from "next/image";
 
 // Function to get Unix timestamps for today's start and end
-const getTodayTimestamps = () => {
-	const startOfDay = Math.floor(new Date().setUTCHours(0, 0, 0, 0) / 1000);
-	const endOfDay = Math.floor(new Date().setUTCHours(23, 59, 59, 999) / 1000);
-	return { startOfDay, endOfDay };
-};
 
 const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 	try {
-		const data = await fetchEpisodes(airingTodayAnime);
+		const data = await fetchData(airingTodayAnime, true);
 		const { startOfDay, endOfDay } = getTodayTimestamps();
 
 		// Filter anime that are airing today
@@ -20,17 +17,9 @@ const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 			const airingAt = anime.nextAiringEpisode?.airingAt;
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
-		// console.log(airingToday);
 		// ✅ Call the API route to insert data
-		console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/recentAnimeList`);
-		if (data.length > 0) {
-			await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/recentAnimeList`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			});
+		if (airingToday.length > 0) {
+			await fetchData(`${process.env.NEXT_PUBLIC_BASE_URL}/api/anime/recent`);
 		}
 
 		return airingToday;

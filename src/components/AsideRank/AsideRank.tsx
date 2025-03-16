@@ -1,4 +1,3 @@
-import fetchEpisodes from "@/lib/fetchData";
 import rank1 from "../../../public/rank/1.png";
 import rank3 from "../../../public/rank/3.png";
 import rank4 from "../../../public/rank/4.png";
@@ -21,9 +20,10 @@ const borderColors: Record<number, string> = {
 import { topTodayAnime } from "@/query/topTodayAnime";
 import { capitalizeWords } from "@/lib/capitalise";
 import EpisodeNumber from "../TodaysEpisodesPage/EpisodeNumber";
+import fetchData from "@/lib/fetchData";
 
 export default async function AsideRank() {
-	const topTodays = await fetchEpisodes(topTodayAnime);
+	const topTodays = await fetchData(topTodayAnime, true);
 
 	return (
 		<aside className='w-full px-[1rem] min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 xl:px-[10px]  xl:w-1/4'>
@@ -37,6 +37,9 @@ export default async function AsideRank() {
 			</div>
 			{topTodays.map((anime, index) => {
 				const borderColor = index < 3 ? borderColors[index] : "border-none";
+				const titleCheck = capitalizeWords(
+					anime.title.english?.toLowerCase() || anime.title.romaji?.toLowerCase()
+				);
 				return (
 					<div key={index} className={`aside-card border-r-[2px] ${borderColor}`}>
 						<div className='rank-background w-[50px] h-[55px]'>
@@ -68,14 +71,12 @@ export default async function AsideRank() {
 								<div className='w-full h-full bg-gray-200'>No Image</div>
 							)}
 						</div>
-						<div className=' mx-5 text-[#aaa]'>
-							<p className=' font-medium mb-1.5  text-[1.2rem] 2xl:text-[1.4rem]  leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
-								{capitalizeWords(anime.title.english.toLowerCase())}
+						<div className='mx-5 text-[#aaa]'>
+							<p className='font-medium mb-1.5  text-[1.2rem] 2xl:text-[1.4rem] leading-6 max-h-[3rem] block overflow-hidden line-clamp-2'>
+								{titleCheck}
 							</p>
 
-							<div className='flex flex-wrap  font-medium mb-1.5 text-[1.5rem] leading-6 line-clamp-2'></div>
-							{/* <div>Num</div> */}
-
+							<div className='flex flex-wrap font-medium mb-1.5 text-[1.5rem] leading-6 line-clamp-2'></div>
 							<EpisodeNumber anime={anime} />
 						</div>
 					</div>
