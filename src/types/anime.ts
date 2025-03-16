@@ -1,6 +1,6 @@
 export interface Title {
 	romaji: string;
-	english?: string | null;
+	english?: string;
 }
 
 export interface NextAiringEpisode {
