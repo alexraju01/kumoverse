@@ -17,8 +17,6 @@ export default async function fetchData(
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(payload),
-			cache: "no-store",
-			next: { revalidate: 0 },
 		});
 
 		if (!response.ok) {
