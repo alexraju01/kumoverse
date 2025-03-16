@@ -17,7 +17,7 @@ async function verifyConnection(): Promise<void> {
 	try {
 		// Attempt to acquire a client from the pool
 		const client = await pool.connect();
-		console.log("✅ Connected to PostgreSQL database");
+		console.info("✅ Connected to PostgreSQL database");
 		client.release(); // Release the client back to the pool
 	} catch (error) {
 		console.error("❌ Error connecting to the database:", error);

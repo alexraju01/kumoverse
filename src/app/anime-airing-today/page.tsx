@@ -1,22 +1,16 @@
 import fetchEpisodes from "@/lib/fetchData";
 import { airingTodayAnime } from "@/query/airingTodayAnime";
-import { FetchAnimeList } from "@/query/pg_query/FetchAnimeList";
-import { insertRecentAnimeBatch } from "@/query/pg_query/insertRecentAnime";
-// import { InsertRecentAnimeBatch } from "@/query/pg_query/insertRecentAnime";
-// import { InsertRecentAnime } from "@/query/pg_query/insertRecentAnime";
-import { Anime, APIAnime } from "@/types/anime";
+import { Anime } from "@/types/anime";
 import Image from "next/image";
 
 // Function to get Unix timestamps for today's start and end
 const getTodayTimestamps = () => {
 	const startOfDay = Math.floor(new Date().setUTCHours(0, 0, 0, 0) / 1000);
 	const endOfDay = Math.floor(new Date().setUTCHours(23, 59, 59, 999) / 1000);
-	console.log(startOfDay, endOfDay);
 	return { startOfDay, endOfDay };
 };
 
-// Fetch anime from AniList
-const fetchAiringTodayAnime = async () => {
+const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 	try {
 		const data = await fetchEpisodes(airingTodayAnime);
 		const { startOfDay, endOfDay } = getTodayTimestamps();
@@ -26,10 +20,22 @@ const fetchAiringTodayAnime = async () => {
 			const airingAt = anime.nextAiringEpisode?.airingAt;
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
-		insertRecentAnimeBatch(airingToday);
+		// console.log(airingToday);
+		// ✅ Call the API route to insert data
+		console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/recentAnimeList`);
+		if (data.length > 0) {
+			await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/recentAnimeList`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			});
+		}
+
 		return airingToday;
 	} catch (error) {
-		console.error(error);
+		console.error("Error fetching airing today anime:", error);
 		return [];
 	}
 };
@@ -37,17 +43,16 @@ const fetchAiringTodayAnime = async () => {
 // Server Component
 export default async function AnimeAiringTodayPage() {
 	const animeList = await fetchAiringTodayAnime();
-	const GetAnimeList = await FetchAnimeList();
 
 	return (
 		<div className='p-6'>
 			<h1 className='text-2xl font-bold mb-4'>Anime Airing Today 📺</h1>
 
-			{animeList.length === 0 ? (
+			{animeList?.length === 0 ? (
 				<p>No anime airing today.</p>
 			) : (
 				<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
-					{animeList.map((anime, index) => (
+					{animeList?.map((anime, index) => (
 						<div key={index}>
 							<li className='relative flex flex-col  items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
 								<div className='relative w-full aspect-[5/7]'>
@@ -75,7 +80,7 @@ export default async function AnimeAiringTodayPage() {
 				</ul>
 			)}
 
-			{GetAnimeList.length === 0 ? (
+			{/* {GetAnimeList.length === 0 ? (
 				<p>No anime airing today.</p>
 			) : (
 				<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
@@ -105,7 +110,7 @@ export default async function AnimeAiringTodayPage() {
 						</div>
 					))}
 				</ul>
-			)}
+			)} */}
 		</div>
 	);
 }

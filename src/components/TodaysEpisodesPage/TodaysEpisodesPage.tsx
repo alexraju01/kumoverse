@@ -9,7 +9,6 @@ import EpisodeList from "./EpisodeList";
 
 export default async function TodaysEpisodesPage({ className }: ClassName) {
 	const episodes: Anime[] = await fetchEpisodes(todaysEpisode); // Server fetch
-	console.log(episodes.length);
 	return (
 		<div className={`w-full ${className}`}>
 			{/* <div className='flex flex-col md:flex-row justify-between mb-4'>

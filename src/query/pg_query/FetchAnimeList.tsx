@@ -1,23 +1,15 @@
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export const FetchAnimeList = async () => {
-	const client = await pool.connect();
-
 	try {
-		const query = `SELECT * FROM recent_anime`;
-
-		await client.query("BEGIN");
-		const res = await client.query(query);
-		await client.query("COMMIT");
-
-		console.log(`✅ Successfully fetched from recent_anime table`);
-
-		return res.rows; // Return inserted/updated rows
-	} catch (err) {
-		await client.query("ROLLBACK");
-		console.error("❌ Error inserting anime batch:", err);
-		throw new Error("Failed to fetch from recent_anime table");
-	} finally {
-		client.release();
+		const animeList = await prisma.recentAnimeList.findMany({
+			orderBy: {
+				airing_at: "desc",
+			},
+		});
+		return animeList;
+	} catch (error) {
+		console.error("Error fetching anime list:", error);
+		return [];
 	}
 };
