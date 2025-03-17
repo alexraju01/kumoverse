@@ -23,8 +23,6 @@ export async function POST(req: Request) {
 			skipDuplicates: true, // Avoid inserting duplicates
 		});
 
-		console.log(animeListTransformed);
-
 		console.info(`Inserted ${insertedAnime.count} anime airing today.`);
 
 		return NextResponse.json(

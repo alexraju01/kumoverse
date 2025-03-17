@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Card = ({ anime }: Props) => {
-	console.log(anime);
 	return (
 		<div>
 			<li className='relative flex flex-col items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
