@@ -11,7 +11,7 @@ const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 	try {
 		const data = await fetchData(airingTodayAnime, true);
 		const { startOfDay, endOfDay } = getTodayTimestamps();
-
+		// console.log(data);
 		// Filter anime that are airing today
 		const airingToday = data.filter((anime: Anime) => {
 			const airingAt = anime.nextAiringEpisode?.airingAt;
