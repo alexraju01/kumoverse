@@ -10,16 +10,17 @@ interface EpisodeNumberProps {
 }
 
 export default function EpisodeNumber({ anime }: EpisodeNumberProps) {
-	const [currentEpisode, setCurrentEpisode] = useState(
-		anime.nextAiringEpisode?.episode ? anime.nextAiringEpisode.episode - 1 : null
+	const [currentEpisode, setCurrentEpisode] = useState<number | null>(
+		anime.nextAiringEpisode?.episode ? anime.nextAiringEpisode.episode - 1 : anime.episodes ?? null
 	);
 
 	useEffect(() => {
 		if (anime.nextAiringEpisode?.episode) {
-			// Update the state with the latest valid episode
 			setCurrentEpisode(anime.nextAiringEpisode.episode - 1);
+		} else if (anime.episodes) {
+			setCurrentEpisode(anime.episodes);
 		}
-	}, [anime.nextAiringEpisode]);
+	}, [anime.nextAiringEpisode, anime.episodes]);
 
 	return (
 		<div className='flex gap-[7px] items-center font-semibold'>
