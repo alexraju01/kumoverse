@@ -16,9 +16,9 @@ const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
 		// ✅ Call the API route to insert data
-		if (airingToday.length > 0) {
-			await fetchData(`${process.env.NEXT_PUBLIC_BASE_URL}/api/anime/recent`);
-		}
+		// if (airingToday.length > 0) {
+		// 	await fetchData(`${process.env.NEXT_PUBLIC_BASE_URL}/api/anime/recent`);
+		// }
 
 		return airingToday;
 	} catch (error) {
