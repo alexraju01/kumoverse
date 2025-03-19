@@ -17,6 +17,7 @@ export default async function fetchData(
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(payload),
+			next: { revalidate: 60 },
 		});
 
 		if (!response.ok) {
