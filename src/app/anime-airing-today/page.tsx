@@ -1,5 +1,5 @@
 // import fetchEpisodes from "@/lib/fetchData";
-import { fetchData, fetchGraphQL } from "@/lib/fetchData";
+import { fetchGraphQL } from "@/lib/fetchData";
 import { getTodayTimestamps } from "@/lib/getTodayTimestamps";
 import { airingTodayAnime } from "@/query/airingTodayAnime";
 import { Anime } from "@/types/anime";
@@ -16,10 +16,10 @@ const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
 		// ✅ Call the API route to insert data
-		if (airingToday.length > 0) {
-			await fetchData(`/api/anime/recent`, "POST", airingToday);
-            
-        }
+		// if (airingToday.length > 0) {
+		// 	await fetchData(`/api/anime/recent`, "POST", airingToday);
+
+		// }
 
 		return airingToday;
 	} catch (error) {
