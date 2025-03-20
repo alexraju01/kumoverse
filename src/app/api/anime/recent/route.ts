@@ -1,3 +1,4 @@
+// api/anime/recent
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { transformAnimeData } from "@/lib/transformAnime";

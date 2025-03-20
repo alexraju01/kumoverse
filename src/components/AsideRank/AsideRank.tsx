@@ -20,10 +20,10 @@ const borderColors: Record<number, string> = {
 import { topTodayAnime } from "@/query/topTodayAnime";
 import { capitalizeWords } from "@/lib/capitalise";
 import EpisodeNumber from "../TodaysEpisodesPage/EpisodeNumber";
-import fetchData from "@/lib/fetchData";
+import { fetchGraphQL } from "@/lib/fetchData";
 
 export default async function AsideRank() {
-	const topTodays = await fetchData(topTodayAnime, true);
+	const topTodays = await fetchGraphQL(topTodayAnime);
 
 	return (
 		<aside className='w-full px-[1rem] min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 xl:px-[10px]  xl:w-1/4'>

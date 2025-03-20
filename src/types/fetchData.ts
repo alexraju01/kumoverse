@@ -1,6 +1,6 @@
 import { Anime } from "./anime";
 
-interface GraphQLResponse {
+export interface GraphQLResponse {
 	data: {
 		Page: {
 			media: Anime[];

@@ -1,5 +1,5 @@
 // import fetchEpisodes from "@/lib/fetchData";
-import fetchData from "@/lib/fetchData";
+import { fetchData, fetchGraphQL } from "@/lib/fetchData";
 import { getTodayTimestamps } from "@/lib/getTodayTimestamps";
 import { airingTodayAnime } from "@/query/airingTodayAnime";
 import { Anime } from "@/types/anime";
@@ -9,16 +9,17 @@ import Image from "next/image";
 
 const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 	try {
-		const data = await fetchData(airingTodayAnime, true);
+		const data = await fetchGraphQL(airingTodayAnime);
 		const { startOfDay, endOfDay } = getTodayTimestamps();
 		const airingToday = data.filter((anime: Anime) => {
 			const airingAt = anime.nextAiringEpisode?.airingAt;
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
 		// ✅ Call the API route to insert data
-		// if (airingToday.length > 0) {
-		// 	await fetchData(`${process.env.NEXT_PUBLIC_BASE_URL}/api/anime/recent`);
-		// }
+		if (airingToday.length > 0) {
+			await fetchData(`/api/anime/recent`, "POST", airingToday);
+            
+        }
 
 		return airingToday;
 	} catch (error) {
