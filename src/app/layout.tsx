@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic"; // ⬅️ Forces real-time fetch, disables caching
+
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import localFont from "next/font/local";

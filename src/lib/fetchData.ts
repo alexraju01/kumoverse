@@ -12,6 +12,7 @@ export async function fetchGraphQL(query: string): Promise<Anime[]> {
 			body: JSON.stringify({ query }),
 			// Use fetch options specific to Next.js App Router
 			next: { revalidate: 60 },
+			// cache: "no-cache",
 		});
 
 		if (!response.ok) {
@@ -37,7 +38,7 @@ export async function fetchData<T = unknown>(
 			method,
 			headers: { "Content-Type": "application/json" },
 			...(method === "POST" && body ? { body: JSON.stringify(body) } : {}),
-			next: { revalidate: 60 },
+			cache: "no-cache",
 		};
 
 		const response = await fetch(url, options);

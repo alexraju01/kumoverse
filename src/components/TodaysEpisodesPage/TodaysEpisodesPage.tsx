@@ -1,4 +1,3 @@
-// components/TodaysEpisodesPage.tsx
 import { ClassName } from "@/types/props";
 import { todaysEpisode } from "@/query/todaysEpisode";
 import { Anime } from "@/types/anime";
