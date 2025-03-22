@@ -1,5 +1,6 @@
 // import fetchEpisodes from "@/lib/fetchData";
-import { fetchGraphQL } from "@/lib/fetchData";
+import EpisodeNumber from "@/components/TodaysEpisodesPage/EpisodeNumber";
+import { fetchData, fetchGraphQL } from "@/lib/fetchData";
 import { getTodayTimestamps } from "@/lib/getTodayTimestamps";
 import { airingTodayAnime } from "@/query/airingTodayAnime";
 import { Anime } from "@/types/anime";
@@ -16,10 +17,9 @@ const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 			return airingAt && airingAt >= startOfDay && airingAt <= endOfDay;
 		});
 		// ✅ Call the API route to insert data
-		// if (airingToday.length > 0) {
-		// 	await fetchData(`/api/anime/recent`, "POST", airingToday);
-
-		// }
+		if (airingToday.length > 0) {
+			await fetchData(`/api/anime/recent`, "POST", airingToday);
+		}
 
 		return airingToday;
 	} catch (error) {
@@ -39,7 +39,7 @@ export default async function AnimeAiringTodayPage() {
 			{animeList?.length === 0 ? (
 				<p>No anime airing today.</p>
 			) : (
-				<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 gap-[20px]'>
+				<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-8 gap-[20px]'>
 					{animeList?.map((anime, index) => (
 						<div key={index}>
 							<li className='relative flex flex-col  items-center shadow-lg transition-all overflow-hidden rounded-[5px]'>
@@ -57,6 +57,7 @@ export default async function AnimeAiringTodayPage() {
 									/>
 								</div>
 								<div className='flex justify-between px-[8px] text-sm font-semibold bg-[#242424] text-[#aaa] absolute bottom-0 left-0 w-full h-8 leading-8 text-center z-10 overflow rounded-b-[5px] '>
+									<EpisodeNumber anime={anime} nextEpisode />
 									<div>TV</div>
 								</div>
 							</li>

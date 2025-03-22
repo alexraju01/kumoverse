@@ -7,20 +7,22 @@ import ccImage from "../../../public/icon-sub2.svg";
 
 interface EpisodeNumberProps {
 	anime: Anime;
+	nextEpisode?: boolean;
 }
 
-export default function EpisodeNumber({ anime }: EpisodeNumberProps) {
+export default function EpisodeNumber({ anime, nextEpisode }: EpisodeNumberProps) {
 	const [currentEpisode, setCurrentEpisode] = useState<number | null>(
 		anime.nextAiringEpisode?.episode ? anime.nextAiringEpisode.episode - 1 : anime.episodes ?? null
 	);
-
 	useEffect(() => {
-		if (anime.nextAiringEpisode?.episode) {
+		if (!nextEpisode && anime.nextAiringEpisode?.episode) {
 			setCurrentEpisode(anime.nextAiringEpisode.episode - 1);
+		} else if (nextEpisode && anime.nextAiringEpisode?.episode) {
+			setCurrentEpisode(anime.nextAiringEpisode.episode);
 		} else if (anime.episodes) {
 			setCurrentEpisode(anime.episodes);
 		}
-	}, [anime.nextAiringEpisode, anime.episodes]);
+	}, [anime.nextAiringEpisode, anime.episodes, nextEpisode]);
 
 	return (
 		<div className='flex gap-[7px] items-center font-semibold'>
