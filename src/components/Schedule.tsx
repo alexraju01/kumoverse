@@ -4,6 +4,7 @@ import scheduleImg from "../../public/bg-schedule.png";
 import Clock from "./Footer/Clock";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import { AiringSchedule, getTodaysAiringAnime } from "./TodaysEpisodesPage/scheduled";
 
 const generateWeekDays = () => {
 	const options: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "2-digit" };
@@ -18,7 +19,28 @@ const generateWeekDays = () => {
 	});
 };
 
+function formatUnixTimestamp(timestamp: number) {
+	const dateObj = new Date(timestamp * 1000);
+
+	const day = dateObj.toLocaleDateString("en-US", { weekday: "long" });
+
+	const date = dateObj.toLocaleDateString("en-US", {
+		month: "long",
+		day: "numeric",
+		year: "numeric",
+	});
+
+	const time = dateObj.toLocaleTimeString("en-US", {
+		hour: "2-digit",
+		minute: "2-digit",
+		hour12: false,
+	});
+
+	return { day, date, time };
+}
+
 export default function Schedule() {
+	const [schedules, setSchedules] = useState<AiringSchedule[]>([]);
 	const [days, setDays] = useState(generateWeekDays());
 	const [startIndex, setStartIndex] = useState(0);
 	const [translateStep, setTranslateStep] = useState(1); // Default to 1
@@ -44,11 +66,20 @@ export default function Schedule() {
 		return () => clearInterval(interval);
 	}, []);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getTodaysAiringAnime();
+			console.log("=======================", data); // ✅ log it here
+			setSchedules(data);
+		};
+
+		fetchData();
+	}, []);
+
 	const nextDay = () => setStartIndex((prev) => Math.min(prev + translateStep, days.length - 7));
 	const prevDay = () => setStartIndex((prev) => Math.max(prev - translateStep, 0));
 
 	const visibleDays = days.slice(startIndex, startIndex + 7);
-
 	return (
 		<div className='mb-[40px] rounded-md overflow-hidden'>
 			<div className='relative pt-[20px]  px-[10px]  h-[168px]'>
@@ -84,20 +115,32 @@ export default function Schedule() {
 								))}
 							</div>
 						</div>
-						<div onClick={nextDay}>
+						<div className='cursor-pointer' onClick={nextDay}>
 							<FaChevronRight className='chevron-icon' />
 						</div>
 					</div>
 				</div>
 			</div>
 			<div className='bg-[#171717] w-full'>
-				{Array(2)
+				{/* {Array(2)
 					.fill("items1")
 					.map((item, i) => (
 						<div key={i} className='py-5'>
 							{item}
 						</div>
-					))}
+					))} */}
+				{schedules.map((anime, index) => {
+					const { time } = formatUnixTimestamp(anime.airingAt);
+					return (
+						<div key={index} className='flex justify-between px-20 py-4'>
+							<div className='flex gap-12'>
+								<time>{time}</time>
+								<p>{anime.media.title.english || anime.media.title.romaji}</p>
+							</div>
+							<div>{anime.media.episodes}</div>
+						</div>
+					);
+				})}
 			</div>
 			<div className='bg-[#181818] border-t border-[#202020] text-center p-[12px] text-[1.1rem] cursor-pointer transition-all duration-300 text-[#666] hover:bg-[#1d1d1d] hover:text-[#aaa]'>
 				Show more
