@@ -1,7 +1,8 @@
 // api/anime/recent
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+// import { prisma } from "@/lib/prisma";
 import { transformAnimeData } from "@/lib/transformAnime";
+import { prisma } from "@/lib/prisma";
 
 const MAX_RECORDS = 15;
 
