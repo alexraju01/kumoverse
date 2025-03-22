@@ -10,9 +10,6 @@ export async function fetchGraphQL(query: string): Promise<Anime[]> {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ query }),
-			// Use fetch options specific to Next.js App Router
-			next: { revalidate: 60 },
-			// cache: "no-cache",
 		});
 
 		if (!response.ok) {
