@@ -28,11 +28,13 @@ export default async function AsideRank() {
 	return (
 		<aside className='w-full px-[1rem] min-w-[320px] flex-shrink-0 bg-#242424 space-y-2 xl:px-[10px]  xl:w-1/4'>
 			<div className='flex justify-between'>
-				<h2>Top Anime</h2>
-				<div className='flex bg-itemBackground p-[3px] items-center rounded-[5px]'>
-					<p className='aside-toogle-tab'>Day</p>
-					<p className='aside-toogle-tab'>Week</p>
-					<p className='aside-toogle-tab'>Month</p>
+				<h2 className='text-[2rem]'>Top Anime</h2>
+				<div>
+					<div className='flex bg-itemBackground p-[3px] items-center rounded-[5px]'>
+						<p className='aside-toogle-tab'>Day</p>
+						<p className='aside-toogle-tab'>Week</p>
+						<p className='aside-toogle-tab'>Month</p>
+					</div>
 				</div>
 			</div>
 			{topTodays.map((anime, index) => {

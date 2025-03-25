@@ -5,6 +5,7 @@ import Clock from "./Footer/Clock";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { AiringSchedule, getTodaysAiringAnime } from "./TodaysEpisodesPage/scheduled";
+import { FaPlay } from "react-icons/fa";
 
 const generateWeekDays = () => {
 	const options: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "2-digit" };
@@ -134,10 +135,13 @@ export default function Schedule() {
 					return (
 						<div key={index} className='flex justify-between px-20 py-4'>
 							<div className='flex gap-12'>
-								<time>{time}</time>
-								<p>{anime.media.title.english || anime.media.title.romaji}</p>
+								<time className='text-lg'>{time}</time>
+								<p className='text-lg'>{anime.media.title.english || anime.media.title.romaji}</p>
 							</div>
-							<div>{anime.media.episodes}</div>
+							<div className='flex items-center justify-center gap-3 w-[11rem] px-7 py-2 rounded-full bg-[#212121]'>
+								<FaPlay className='text-sm' />
+								<span>Episode {anime.media.episodes}</span>
+							</div>
 						</div>
 					);
 				})}
