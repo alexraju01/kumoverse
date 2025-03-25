@@ -7,6 +7,7 @@ import { prisma } from "@/lib/prisma";
 const MAX_RECORDS = 15;
 
 export async function POST(req: Request) {
+	//
 	try {
 		// Parse the request body
 		const animeList = await req.json();
