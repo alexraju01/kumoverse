@@ -10,7 +10,7 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"postbuild": "next-sitemap",
-		"postinstall": "prisma generate --no-engine"
+		"postinstall": "prisma migrate deploy && prisma generate --no-engine"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.12.4",
