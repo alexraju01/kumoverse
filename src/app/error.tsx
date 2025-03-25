@@ -2,8 +2,6 @@
 
 import { useEffect } from "react";
 import { AlertTriangle } from "lucide-react";
-import Image from "next/image";
-import pika from "../../public/crash-pika.jpg";
 export default function Error({
 	error,
 	reset,
