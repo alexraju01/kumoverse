@@ -10,6 +10,7 @@ export async function POST(req: Request) {
 	try {
 		// Parse the request body
 		const animeList = await req.json();
+		console.log(animeList, "=============");
 
 		// Validate animeList
 		if (!animeList || !Array.isArray(animeList) || animeList.length === 0) {

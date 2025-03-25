@@ -18,7 +18,7 @@ const fetchAiringTodayAnime = async (): Promise<Anime[]> => {
 		});
 		// ✅ Call the API route to insert data
 		if (airingToday.length > 0) {
-			await fetchData(`/api/anime/recent`, "POST", airingToday);
+			await fetchData(`/anime/recent`, "POST", airingToday);
 		}
 
 		return airingToday;
