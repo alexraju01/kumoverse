@@ -123,22 +123,22 @@ export default function Schedule() {
 				</div>
 			</div>
 			<div className='bg-[#171717] w-full'>
-				{/* {Array(2)
-					.fill("items1")
-					.map((item, i) => (
-						<div key={i} className='py-5'>
-							{item}
-						</div>
-					))} */}
 				{schedules.map((anime, index) => {
 					const { time } = formatUnixTimestamp(anime.airingAt);
+					const bgColor = index % 2 === 0 ? "bg-[#121212]" : "bg-[#171717]"; // Tailwind red & blue
+
 					return (
-						<div key={index} className='flex justify-between px-20 py-4'>
-							<div className='flex gap-12'>
-								<time className='text-lg'>{time}</time>
-								<p className='text-lg'>{anime.media.title.english || anime.media.title.romaji}</p>
+						<div
+							key={index}
+							className={`group flex md:items-center justify-between px-14 py-4 text-xl text-[#AAAAAA] cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#212121] md:bg-[#171717] ${bgColor}`}>
+							<div className='flex gap-7  flex-col md:flex-row md:gap-8 md:items-center '>
+								<time className='font-semibold'>{time}</time>
+								<p className='transition-colors duration-300 ease-in-out group-hover:text-[#8C5ECE]'>
+									{anime.media.title.english || anime.media.title.romaji}
+								</p>
 							</div>
-							<div className='flex items-center justify-center gap-3 w-[11rem] px-7 py-2 rounded-full bg-[#212121]'>
+
+							<div className='min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full bg-[#212121] text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98]'>
 								<FaPlay className='text-sm' />
 								<span>Episode {anime.media.episodes}</span>
 							</div>
