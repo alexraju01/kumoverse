@@ -4,7 +4,7 @@ import scheduleImg from "../../public/bg-schedule.png";
 import Clock from "./Footer/Clock";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { AiringSchedule, getTodaysAiringAnime } from "./TodaysEpisodesPage/scheduled";
+import { AiringSchedule } from "./TodaysEpisodesPage/scheduled";
 import { FaPlay } from "react-icons/fa";
 
 const generateWeekDays = () => {
@@ -40,11 +40,15 @@ function formatUnixTimestamp(timestamp: number) {
 	return { day, date, time };
 }
 
-export default function Schedule() {
-	const [schedules, setSchedules] = useState<AiringSchedule[]>([]);
+interface Props {
+	scheduledAnime: AiringSchedule[];
+}
+
+export default function Schedule({ scheduledAnime }: Props) {
 	const [days, setDays] = useState(generateWeekDays());
 	const [startIndex, setStartIndex] = useState(0);
 	const [translateStep, setTranslateStep] = useState(1); // Default to 1
+	const [showAll, setShowAll] = useState(false);
 
 	useEffect(() => {
 		const updateTranslateStep = () => {
@@ -52,7 +56,7 @@ export default function Schedule() {
 			if (width < 768) {
 				setTranslateStep(3); // Move all dates on small screens
 			} else {
-				setTranslateStep(2); // Move 2 dates on small desktops
+				setTranslateStep(2);
 			}
 		};
 
@@ -65,16 +69,6 @@ export default function Schedule() {
 	useEffect(() => {
 		const interval = setInterval(() => setDays(generateWeekDays()), 86400000); // Refresh every 24h
 		return () => clearInterval(interval);
-	}, []);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await getTodaysAiringAnime();
-			console.log("=======================", data); // ✅ log it here
-			setSchedules(data);
-		};
-
-		fetchData();
 	}, []);
 
 	const nextDay = () => setStartIndex((prev) => Math.min(prev + translateStep, days.length - 7));
@@ -123,32 +117,40 @@ export default function Schedule() {
 				</div>
 			</div>
 			<div className='bg-[#171717] w-full'>
-				{schedules.map((anime, index) => {
-					const { time } = formatUnixTimestamp(anime.airingAt);
-					const bgColor = index % 2 === 0 ? "bg-[#121212]" : "bg-[#171717]"; // Tailwind red & blue
+				{scheduledAnime
+					.filter((anime) => anime.media.episodes !== null)
+					.slice(0, showAll ? scheduledAnime.length : 6)
+					.map((anime, index) => {
+						const { time } = formatUnixTimestamp(anime.airingAt);
+						const bgColor = index % 2 === 0 ? "bg-[#121212]" : "bg-[#171717]";
 
-					return (
-						<div
-							key={index}
-							className={`group flex md:items-center justify-between px-14 py-4 text-xl text-[#AAAAAA] cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#212121] md:bg-[#171717] ${bgColor}`}>
-							<div className='flex gap-7  flex-col md:flex-row md:gap-8 md:items-center '>
-								<time className='font-semibold'>{time}</time>
-								<p className='transition-colors duration-300 ease-in-out group-hover:text-[#8C5ECE]'>
-									{anime.media.title.english || anime.media.title.romaji}
-								</p>
-							</div>
+						return (
+							<div
+								key={index}
+								className={`group flex md:items-center justify-between px-14 py-4 text-xl text-[#AAAAAA] cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#212121] md:bg-[#171717] ${bgColor}`}>
+								<div className='flex gap-7  flex-col md:flex-row md:gap-8 md:items-center '>
+									<time className='font-semibold'>{time}</time>
+									<p className='transition-colors duration-300 ease-in-out group-hover:text-[#8C5ECE]'>
+										{anime.media.title.english || anime.media.title.romaji}
+									</p>
+								</div>
 
-							<div className='min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full bg-[#212121] text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98]'>
-								<FaPlay className='text-sm' />
-								<span>Episode {anime.media.episodes}</span>
+								<div className='min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full bg-[#212121] text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98]'>
+									<FaPlay className='text-sm' />
+									<span>Episode {anime.media.episodes}</span>
+								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					})}
 			</div>
-			<div className='bg-[#181818] border-t border-[#202020] text-center p-[12px] text-[1.1rem] cursor-pointer transition-all duration-300 text-[#666] hover:bg-[#1d1d1d] hover:text-[#aaa]'>
-				Show more
-			</div>
+
+			{scheduledAnime.length > 6 && (
+				<button
+					onClick={() => setShowAll((prev) => !prev)}
+					className='w-full bg-[#181818] border-t border-[#202020] py-3 text-lg text-[#666] hover:text-[#aaa] hover:bg-[#1d1d1d] transition'>
+					{showAll ? "Show less" : "Show more"}
+				</button>
+			)}
 		</div>
 	);
 }

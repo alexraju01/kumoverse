@@ -58,6 +58,7 @@ export async function getTodaysAiringAnime(): Promise<AiringSchedule[]> {
 		}
 
 		const json: AnilistResponse = await res.json();
+		console.log(json?.data?.Page?.airingSchedules);
 		return json?.data?.Page?.airingSchedules ?? [];
 	} catch (error) {
 		console.error("Error fetching today's airing anime:", error);
