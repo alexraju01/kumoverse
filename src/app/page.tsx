@@ -7,7 +7,7 @@ export default async function Home() {
 		<div className='container mx-auto '>
 			<Link href='/anime-airing-today'>New episodes</Link>
 			<div className='flex -mx-[10px] flex-col xl:flex-row'>
-				<TodaysEpisodesPage className='   bg-[#0E0E0E] px-[10px]' />
+				<TodaysEpisodesPage className='bg-[#0E0E0E] px-[10px]' />
 				<AsideRank />
 			</div>
 		</div>

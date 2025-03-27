@@ -123,19 +123,26 @@ export default function Schedule({ scheduledAnime }: Props) {
 					.map((anime, index) => {
 						const { time } = formatUnixTimestamp(anime.airingAt);
 						const bgColor = index % 2 === 0 ? "bg-[#121212]" : "bg-[#171717]";
-
+						const isPast = anime.airingAt < Math.floor(Date.now() / 1000);
 						return (
 							<div
 								key={index}
-								className={`group flex md:items-center justify-between px-14 py-4 text-xl text-[#AAAAAA] cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#212121] md:bg-[#171717] ${bgColor}`}>
+								className={`group flex md:items-center justify-between px-14 py-4 text-xl text-[#AAAAAA] cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#212121] md:bg-[#171717] ${bgColor}  ${
+									isPast
+										? "text-[#53524F]                                                                                    "
+										: ""
+								}`}>
 								<div className='flex gap-7  flex-col md:flex-row md:gap-8 md:items-center '>
-									<time className='font-semibold'>{time}</time>
+									<time className={`font-semibold ${isPast ? "text-[#53524F]" : ""}`}>{time}</time>
 									<p className='transition-colors duration-300 ease-in-out group-hover:text-[#8C5ECE]'>
 										{anime.media.title.english || anime.media.title.romaji}
 									</p>
 								</div>
 
-								<div className='min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full bg-[#212121] text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98]'>
+								<div
+									className={`min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full bg-[#212121] text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98] ${
+										isPast ? "text-[#53524F] bg-[#1C1C1C]" : ""
+									}`}>
 									<FaPlay className='text-sm' />
 									<span>Episode {anime.media.episodes}</span>
 								</div>
