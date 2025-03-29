@@ -134,14 +134,17 @@ export default function Schedule({ scheduledAnime }: Props) {
 								}`}>
 								<div className='flex gap-7  flex-col md:flex-row md:gap-8 md:items-center '>
 									<time className={`font-semibold ${isPast ? "text-[#53524F]" : ""}`}>{time}</time>
-									<p className='transition-colors duration-300 ease-in-out group-hover:text-[#8C5ECE]'>
+									<p
+										className={`transition-colors duration-300 ease-in-out group-hover:text-[#8C5ECE] ${
+											isPast ? "text-[#53524F]" : ""
+										}`}>
 										{anime.media.title.english || anime.media.title.romaji}
 									</p>
 								</div>
 
 								<div
-									className={`min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full bg-[#212121] text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98] ${
-										isPast ? "text-[#53524F] bg-[#1C1C1C]" : ""
+									className={`min-w-[13rem] place-self-start flex justify-center items-center gap-3  py-2 rounded-full  text-[#AAAAAA] transition-all duration-300 ease-in-out group-hover:text-white group-hover:bg-[#5A2E98] ${
+										isPast ? "text-[#515151] bg-[#1C1C1C]" : "bg-[#212121]"
 									}`}>
 									<FaPlay className='text-sm' />
 									<span>Episode {anime.media.episodes}</span>
